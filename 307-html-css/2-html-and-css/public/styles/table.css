@@ -1,0 +1,51 @@
+/* table {
+    table-layout: unset;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+thead {
+    font-size: 20px;
+}
+
+td, th {
+    border: 1px solid red;
+    border-radius: 3px;
+    
+    
+} */
+
+body {
+    margin: 0;
+}
+
+table {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    width: 200px;
+    height: 300px;
+    text-align: center;
+    border: 5px solid green;
+    border-radius: 4px;
+}
+
+th, td {
+    border: 1px solid red;
+    border-radius: 2px;
+}
+
+#output {
+    text-align: right;
+    padding-right: 6px;
+}
+
+td:hover {
+    background-color: lightcoral;
+    border-color: lightcoral;
+    color: white;
+    box-shadow: 3px 3px 3px grey;
+}

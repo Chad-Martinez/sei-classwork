@@ -1,0 +1,50 @@
+.matrix {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.table__container {
+  margin: 20px 0px;
+  width: 85%;
+}
+
+table {
+  width: 100%;
+  color: var(--color-grey);
+  font-size: 0.8rem;
+}
+
+table,
+th,
+td {
+  margin-top: 8px;
+  border: 0.5px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  width: 33%;
+}
+
+.table__container h4 {
+  align-self: flex-start;
+  margin: 0px;
+}
+
+tr {
+  background-color: white;
+}
+
+tr:nth-child(odd) {
+  background-color: var(--color-yellow-subtle);
+}
+
+th {
+  background-color: var(--color-yellow);
+}
+
+td {
+  text-align: center;
+}

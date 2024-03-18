@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/762d37fbf3.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="order.css" />
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="form-elements.css" />
+    <title>Planet Express - Order Now!</title>
+  </head>
+  <body>
+    <div class="page__container">
+      <div class="nav">
+        <a href="index.html">
+          <img
+            src="../assests/images/futurama/planet-express-logo-nobg.png"
+            alt="Planet Express Logo"
+          />
+        </a>
+        <div class="nav__items">
+          <div class="nav__item">
+            <a href="info.html">Matrix</a>
+          </div>
+          <div class="nav__item active">
+            <a href="order.html">Order</a>
+          </div>
+        </div>
+      </div>
+      <div class="title">
+        <h2>Order Now</h2>
+        <div class="title__border-bottom"></div>
+      </div>
+      <div class="promise">
+        <img src="../assests/images/futurama/leela.webp" alt="Leela" />
+        <div class="promise__text__container">
+          <div class="promise__text__title">*The Captain's Promise</div>
+          <div class="promise__text__text">
+            We promise that your package will arrive on time, undamaged and with
+            none of the contents consumed by our crew.
+          </div>
+        </div>
+      </div>
+      <div class="form__container">
+        <form>
+          <div class="form-group">
+            <label for="name">Enter your name</label>
+            <input type="text" name="name" id="name" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone" />
+          </div>
+          <div class="form-group">
+            <label for="destination">Choose destination</label>
+            <select name="destination" id="destination">
+              <option value="planetary">Planetary</option>
+              <option value="universe">Universe</option>
+              <option value="dimension">Parallel Dimension</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <a href="order-success.html">
+              <button type="button">Order</button>
+            </a>
+          </div>
+        </form>
+      </div>
+      <div class="footer">
+        <div class="footer__container">
+          <div class="footer__img">
+            <img
+              src="../assests/images/futurama/zoidberg.webp"
+              alt="Dr. Zoidberg"
+            />
+          </div>
+          <div class="footer__text">
+            <span>*Disclaimer</span>
+            <span
+              >Your package not guarenteed to arrive on time or undamaged. More
+              than likely some of the contents will be consumed by our
+              crew.</span
+            >
+          </div>
+          <div class="footer__img">
+            <img
+              src="../assests/images/futurama/fry-slurm.webp"
+              alt="Fry with Slurm"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

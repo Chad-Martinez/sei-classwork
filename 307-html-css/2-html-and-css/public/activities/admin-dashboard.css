@@ -1,0 +1,68 @@
+:root {
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  background-color: rgb(244, 244, 244);
+}
+
+.cir {
+  background-color: #6786e2;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+/* .main-container {
+    background-color: ;
+} */
+
+span i.fa-solid {
+    font-size: 1.3rem;
+    color: white;
+}
+
+.notifications i.fa-solid {
+  font-size: 2rem;
+  color: rgb(175, 175, 175)
+}
+
+.earnings {
+    width: 250px;
+    height: 110px;
+    border-radius: 7px;
+    
+
+}
+
+.earnings__sidebar {
+    width: 15px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.earnings__main-content {
+    padding: 10px;
+}
+
+.weekly {
+
+}
+
+.monthly {
+    background-color: #22c98f;
+}
+
+.quarterly {
+background-color: #34b9cc;
+}
+
+.annually {
+background-color: #f7c443;
+}
+
+.earnings__numbers

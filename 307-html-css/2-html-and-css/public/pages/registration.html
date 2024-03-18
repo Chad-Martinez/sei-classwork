@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/registration.css" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
+    <script
+      src="https://kit.fontawesome.com/762d37fbf3.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <a href="../index.html"> <i class="fa-solid fa-house"></i>Home </a>
+      </li>
+      <li>
+        <a href="resume.html">
+          <i class="fa-regular fa-file"></i>Resume
+        </a>
+      </li>
+      <li style="float: right">
+        <a href="login.html">
+          <i class="fa-regular fa-user"></i>Login
+        </a>
+      </li>
+    </ul>
+    <div class="flex-box">
+      <div class="login-container">
+        <i class="fa-brands fa-pied-piper-alt icon"></i>
+        <h3 class="login-header">Register</h3>
+        <form>
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              placeholder="First Name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Last Name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+            />
+          </div>
+          <div class="form-group">
+            <label for="passwordConfirm">Password Confirm</label>
+            <input
+              type="password"
+              id="passwordConfirm"
+              name="passwordConfirm"
+              placeholder="Password Confirm"
+            />
+          </div>
+          <div class="radio-group">
+            <fieldset>
+              <legend>Gender</legend>
+              <label for="male">Male</label>
+              <input type="radio" id="male" name="male" />
+              <label for="female">Female</label>
+              <input type="radio" id="female" name="female" />
+            </fieldset>
+          </div>
+          <div class="date">
+            <fieldset>
+              <legend>Date</legend>
+              <input type="date" id="male" name="male" />
+            </fieldset>
+          </div>
+          <div class="checkbox-group">
+            <fieldset>
+              <legend>Habits</legend>
+              <div class="checkbox-container">
+                <div class="checkbox">
+                  <label for="sports">You like sports</label>
+                  <input type="checkbox" id="sports" name="sports" />
+                </div>
+                <div class="checkbox">
+                  <label for="eat">You like to eat</label>
+                  <input type="checkbox" id="eat" name="eat" />
+                </div>
+                <div class="checkbox">
+                  <label for="sleep">You like to sleep</label>
+                  <input type="checkbox" id="sleep" name="sleep" />
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <button>Register</button>
+          <div class="forgot-password">
+            Already have an account? <a href="login.html">Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

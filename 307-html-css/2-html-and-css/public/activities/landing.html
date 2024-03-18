@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="landing.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Salchipapa - Oh yea!</title>
+  </head>
+  <body>
+    <div class="landing__container">
+      <img
+        class="landing__img"
+        src="https://i.ytimg.com/vi/x2k4KkL3P6k/maxresdefault.jpg"
+        alt="salchipapa"
+      />
+    </div>
+    <div class="testimonial__container">
+      <div class="testimonial__text__container">
+        <p>
+          You never had no Salchipapa like this. Estilo Colombiano! I mean look
+          at this kid, not just one thumbs up, he's got two thumbs up!
+        </p>
+      </div>
+      <div class="testimonial__img__badge">Es <u>Super</u> Chevre!</div>
+      <div class="testimonial__img__container">
+        <img
+          class="testimonial__img"
+          src="../assests/images/happy-young-hispanic-school-boy-with-thumbs-up-isolated-on-a-white-D2291P-removebg-preview.png"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="order-group">
+      <div class="call-to-action__container">
+        <img
+          class="call-to-action__img"
+          src="../assests/images/arrow-down-512.webp"
+          alt="Order Now Arrow"
+        />
+        <div class="call-to-action__text">Feed your hole!</div>
+      </div>
+      <form action="submit">
+        <h3>Order Now Amigo!</h3>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="tel" name="phone" id="phone" />
+        </div>
+        <div class="form-group">
+          <label for="size">How big you want it?</label>
+          <select name="size" id="size">
+            <option value="" disabled selected>Select your size</option>
+            <option value="small">Small - $6.99</option>
+            <option value="medium">Medium - $9.99</option>
+            <option value="grande">Grande - $15.99</option>
+            <option value="super">Super Grande - $19.99</option>
+          </select>
+        </div>
+        <div class="choice-group">
+          <fieldset>
+            <legend for="extras">Extra Fixin's</legend>
+            <div class="checkbox-group">
+              <input type="checkbox" name="chorizo" />
+              <label for="chorizo">Chorizo +$2.99</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" name="cheese" />
+              <label for="cheese">Cheese +$1.99</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" name="guac" />
+              <label for="guac">Guacamole +$3.99</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="choice-group">
+          <fieldset>
+            <legend for="extras">How fast you want it, son?</legend>
+            <div class="radio-group">
+              <input type="radio" name="turtle" />
+              <label for="turtle">Turtle</label>
+            </div>
+            <div class="radio-group">
+              <input type="radio" name="rabbit" />
+              <label for="rabbit">Rabbit</label>
+            </div>
+            <div class="radio-group">
+              <input type="radio" name="cheetah" />
+              <label for="cheetah">Cheetah</label>
+            </div>
+          </fieldset>
+        </div>
+        <button>Gimme it!</button>
+      </form>
+    </div>
+    <div class="footer">
+      Don't like Salchipapa? Go eat at
+      <a href="https://www.mcdonalds.com">McDonalds</a>
+    </div>
+  </body>
+</html>

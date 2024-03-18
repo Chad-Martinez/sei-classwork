@@ -1,0 +1,30 @@
+body {
+  height: 100vh;
+}
+.page__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.order-complete__img img {
+  width: 390px;
+}
+
+.order__container {
+  padding: 40px;
+}
+
+.order__number {
+  text-align: center;
+}
+
+.problem__container {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 0.8rem;
+  align-self: center;
+  text-decoration: underline;
+  padding: 5px;
+}

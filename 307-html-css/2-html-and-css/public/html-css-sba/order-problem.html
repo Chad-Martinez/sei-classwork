@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="order-problem.css" />
+    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="form-elements.css" />
+    <title>Planet Express - You got a problem?</title>
+  </head>
+  <body>
+    <div class="page__container">
+      <div class="nav">
+        <a href="index.html">
+          <img
+            src="../assests/images/futurama/planet-express-logo-nobg.png"
+            alt="Planet Express Logo"
+          />
+        </a>
+        <div class="nav__items">
+          <div class="nav__item">
+            <a href="info.html">Info</a>
+          </div>
+          <div class="nav__item">
+            <a href="order.html">Order</a>
+          </div>
+        </div>
+      </div>
+      <div class="title">
+        <h2>Hooray, We failed!</h2>
+        <div class="title__border-bottom" style="width: 40%"></div>
+      </div>
+      <div class="order-problem__img">
+        <img
+          src="../assests/images/futurama/zoidberg-fail.webp"
+          alt="Woo-Hoo! Order Complete"
+        />
+      </div>
+      <div class="order-problem__container">
+        <div class="order-problem__text">Report a Problem</div>
+      </div>
+      <div class="form__container">
+        <form>
+          <div class="form-group">
+            <label for="name">Enter your name</label>
+            <input type="text" name="name" id="name" />
+          </div>
+          <div class="form-group">
+            <label for="order-number">Order No.</label>
+            <input type="text" name="order-number" id="order-number" />
+          </div>
+          <div class="form-group">
+            <textarea
+              name="explain"
+              id="explain"
+              cols="30"
+              rows="8"
+              placeholder="What happened?"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <a href="404.html">
+              <button type="button">Cry about it</button>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

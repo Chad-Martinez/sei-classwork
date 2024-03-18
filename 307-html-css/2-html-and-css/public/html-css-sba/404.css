@@ -1,0 +1,18 @@
+.page__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.break__img img {
+  padding: 20px;
+  height: 300px;
+}
+
+.break__container {
+  padding: 15px;
+}
+
+.break__text {
+  font-size: 1.5rem;
+}

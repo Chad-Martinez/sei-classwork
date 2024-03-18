@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #f9fafc;
+}
+
+.flex-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.login-container {
+  display: flex;
+  border: 1px solid white;
+  border-radius: 12px;
+  background-color: white;
+  width: 60%;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-shadow: 4px 4px 10px grey;
+}
+
+.icon {
+  color: #3c3c3c;
+  margin-top: 40px;
+  font-size: 80px;
+}
+
+.login-header {
+  font-size: 26px;
+  display: block;
+  margin: px;
+  width: 100%;
+  color: #3c3c3c;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  /* border: 2px solid red; */
+  color: #8e8c8c;
+  width: 60%;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin: 0px 0px 50px 0px;
+}
+
+.form-group {
+  width: 100%;
+  margin: 5px;
+  display: block;
+}
+
+.form-group input {
+  width: 100%;
+  height: 35px;
+  margin-top: 5px;
+  border: 1px solid #979494;
+  border-radius: 8px;
+  padding: 0px;
+  box-shadow: 3px 3px 3px #bcbcbc;
+}
+
+.form-group input::placeholder {
+  color: #bdbdbd;
+  padding: 12px;
+}
+
+.form-group input:focus {
+  border: 1px solid #4780e9;
+}
+
+.radio-group {
+  margin: 10px 0px;
+  width: 50%;
+}
+
+fieldset {
+  height: 40px;
+  font-size: 14px;
+  border: 1px solid #979494;
+  border-radius: 6px;
+}
+
+.radio-group label {
+  font-size: 16px;
+}
+
+.radio-group input {
+  box-shadow: none;
+  margin-right: 10px;
+}
+
+.date {
+  margin: 10px 0px;
+  width: 50%;
+}
+
+.date input {
+  width: 100%;
+  border: none;
+  color: #8e8c8c
+}
+
+.checkbox-group {
+  margin: 5px 0px;
+  width: 100%;
+}
+
+.checkbox-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.checkbox {
+    display: flex;
+    align-content: center;
+}
+
+button {
+  width: 100%;
+  margin: 10px 4px;
+  height: 35px;
+  background-color: #4780e9;
+  border: 1px solid #4780e9;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 3px 3px 3px #bcbcbc;
+}
+
+button:hover {
+  /* border: 1px solid black; */
+  /* background-color: white; */
+  box-shadow: none;
+  font-size: 14px;
+}
+
+.forgot-password {
+  font-size: 10px;
+  width: 100%;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.forgot-password:hover {
+  color: #4780e9;
+  cursor: pointer;
+}

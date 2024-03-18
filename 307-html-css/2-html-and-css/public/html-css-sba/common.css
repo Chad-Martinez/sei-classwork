@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+:root {
+  --bg-red: #dc3545;
+  --color-blue: #1e818f;
+  --color-green: #007f73;
+  --nav-bg-color: #4ccd99;
+  --color-yellow: #ffc700;
+  --color-yellow-subtle: #faf6b8;
+  --color-grey: #555555;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  background-color: var(--bg-red);
+  font-family: 'Architects Daughter', cursive;
+  font-optical-sizing: auto;
+  color: white;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+  width: 100%;
+  height: 50px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.title h2 {
+  margin: 0px;
+}
+
+.title__border-bottom {
+  height: 1px;
+  width: 25%;
+  border-bottom: 1px solid white;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 100vh;
+  padding: 10px;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100%;
+}
