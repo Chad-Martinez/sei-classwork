@@ -1,4 +1,4 @@
-type CourseInfo = {
+export type CourseInfo = {
   id: number;
   name: string;
 };
@@ -8,14 +8,14 @@ export const COURSE_INFO_DATA: CourseInfo = {
   name: 'Introduction to JavaScript',
 };
 
-type Assignment = {
+export type Assignment = {
   id: number;
   name: string;
   due_at: string;
   points_possible: number;
 };
 
-type AssignmentGroup = {
+export type AssignmentGroup = {
   id: number;
   name: CourseInfo['name'];
   course_id: CourseInfo['id'];
@@ -50,12 +50,12 @@ export const ASSIGNMENT_GROUP_DATA: AssignmentGroup = {
   ],
 };
 
-type Submission = {
+export type Submission = {
   submitted_at: string;
   score: number;
 };
 
-type LearnerSubmission = {
+export type LearnerSubmission = {
   learner_id: number;
   assignment_id: Assignment['id'];
   submission: Submission;
