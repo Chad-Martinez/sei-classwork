@@ -14,55 +14,71 @@ let captain: string;
 let ship: string;
 const alienCount: number = 5;
 
-const CAPTAIN_HIT_DIALOG = 'Yes! Direct Hit!';
-const CAPTAIN_MISS_DIALOG = 'Rats! We missed!';
-const CAPTAIN_DESTROY_DIALOG = 'Another one bites the dust!';
+const CAPTAIN_HIT_DIALOG: string = 'Yes! Direct Hit!';
+const CAPTAIN_MISS_DIALOG: string = 'Rats! We missed!';
+const CAPTAIN_DESTROY_DIALOG: string = 'Another one bites the dust!';
 
-const OMICRON_HIT_DIALOG = 'Hit!! Soon you will meet your fate!';
-const OMICRON_MISS_DIALOG = 'Miss? Unacceptable! Recalibrate lasers!';
-const OMICRON_DESTROY_DIALOG = 'MUAH AHAH AH! Doooom!';
+const OMICRON_HIT_DIALOG: string = 'Hit!! Soon you will meet your fate!';
+const OMICRON_MISS_DIALOG: string = 'Miss? Unacceptable! Recalibrate lasers!';
+const OMICRON_DESTROY_DIALOG: string = 'MUAH AHAH AH! Doooom!';
 
-const gameArea = document.getElementById('game-area');
-const selectCaptainModal = document.getElementById('captain-modal');
-const selectLeela = document.getElementById('leela-select');
-const selectZapp = document.getElementById('zapp-select');
-const selectShipModal = document.getElementById('ship-modal');
-const selectPlanetExpress = document.getElementById('planet-express-select');
-const selectNimbus = document.getElementById('nimbus-select');
-const backdrop = document.getElementById('backdrop');
+const gameArea = document.getElementById('game-area') as HTMLDivElement;
+const selectCaptainModal = document.getElementById(
+  'captain-modal'
+) as HTMLDivElement;
+const selectLeela = document.getElementById(
+  'leela-select'
+) as HTMLButtonElement;
+const selectZapp = document.getElementById('zapp-select') as HTMLButtonElement;
+const selectShipModal = document.getElementById('ship-modal') as HTMLDivElement;
+const selectPlanetExpress = document.getElementById(
+  'planet-express-select'
+) as HTMLButtonElement;
+const selectNimbus = document.getElementById(
+  'nimbus-select'
+) as HTMLButtonElement;
+const backdrop = document.getElementById('backdrop') as HTMLDivElement;
 
-const setCaptain = document.getElementById('captain');
-const setShip = document.getElementById('player-ship');
-const shipCount = document.getElementById('ship-count');
-const playerHull = document.getElementById('player-hull');
-const omicronHull = document.getElementById('omicron-hull');
-const playerHullTitle = document.getElementById('player-hull-title');
-const playerBubble = document.getElementById('player-bubble');
-const omicronBubble = document.getElementById('omicron-bubble');
+const setCaptain = document.getElementById('captain') as HTMLImageElement;
+const setShip = document.getElementById('player-ship') as HTMLImageElement;
+const shipCount = document.getElementById('ship-count') as HTMLDivElement;
+const playerHull = document.getElementById(
+  'player-hull'
+) as HTMLProgressElement;
+const omicronHull = document.getElementById(
+  'omicron-hull'
+) as HTMLProgressElement;
+const playerHullTitle: HTMLElement =
+  document.getElementById('player-hull-title');
+const playerBubble: HTMLElement = document.getElementById('player-bubble');
+const omicronBubble: HTMLElement = document.getElementById('omicron-bubble');
 
-const attackBtn = document.getElementById('attack-btn');
+const attackBtn: HTMLElement = document.getElementById('attack-btn');
 
-const toggleBackdrop = () => {
-  backdrop.classList.remove('visible');
-};
+const toggleBackdrop = (): void => backdrop.classList.remove('visible');
 
-const toggleCaptainModal = () => {
+const toggleCaptainModal = (): void =>
   selectCaptainModal.classList.remove('visible');
-};
 
-const toggleShipModal = () => {
+const toggleShipModal = (): void => {
   selectShipModal.classList.add('visible');
   toggleBackdrop();
 };
 
-const selectCaptainHandler = (e) => {
-  captain = e.target.id;
+const selectCaptainHandler = (e: InputEvent): void => {
+  console.log(e);
+  e.target instanceof HTMLButtonElement
+    ? (captain = e.target.id)
+    : (captain = 'leela-select');
+
   toggleCaptainModal();
   toggleShipModal();
 };
 
-const selectShipHandler = (e) => {
-  ship = e.target.id;
+const selectShipHandler = (e: InputEvent): void => {
+  e.target instanceof HTMLButtonElement
+    ? (ship = e.target.id)
+    : (ship = 'planet-express-select');
 
   if (captain === 'zapp-select') {
     setCaptain.setAttribute('src', 'images/zapp-main.webp');
@@ -80,7 +96,7 @@ const selectShipHandler = (e) => {
   setOmicronHull(omicronFleet[omicronFleet.length - 1].hull);
 };
 
-const alienShipFactory = (fleetCount) => {
+const alienShipFactory = (fleetCount: number): Array<Ship> => {
   const alienFleet: Array<Ship> = [];
   for (let i = 0; i < fleetCount; i++) {
     alienFleet.push({
@@ -89,7 +105,6 @@ const alienShipFactory = (fleetCount) => {
       accuracy: (Math.random() * (8 - 6 + 1) + 6) / 10,
     });
   }
-  console.log('GENERATED FLEET ', alienFleet);
   return alienFleet;
 };
 

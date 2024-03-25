@@ -50,6 +50,10 @@ body {
   height: 33%;
 }
 
+.player .box:first-child, .omicron .box:first-child {
+  gap: 20px;
+}
+
 #captain, #omicron-lrrrr {
   height: 200px;
   object-fit: contain;
@@ -61,12 +65,20 @@ body {
   align-self: center;
 }
 
-#omicron-lrrrr {
+#player-bubble {
+  opacity: 0;
+}
+
+#omicron-bubble {
+  opacity: 0;
+}
+
+.omicron .box:first-child div:first-child {
   margin-left: auto;
 }
 
 #omicron-ship {
-  height: 150px;
+  height: 175px;
   object-fit:contain;
   margin-left: auto;
   align-self: center;
@@ -166,7 +178,7 @@ progress[value]::-moz-progress-bar {
   display: flex;
   flex-direction: column;
 }
-
+/* 
 #bonus-life {
   font-weight: bold;
   color: white;
@@ -176,7 +188,7 @@ progress[value]::-moz-progress-bar {
   border-radius: 10px;
   text-align: center;
   margin: 0 0.5rem;
-}
+} */
 
 .stars-backdrop {
   z-index: -2;
