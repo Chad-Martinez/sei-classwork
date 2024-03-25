@@ -4,11 +4,23 @@ type Ship = {
   accuracy: number;
 };
 
-const ussAssembly: Ship = {
+const playerShip: Ship = {
   hull: 20,
-  firepower: 5,
+  firepower: 4,
   accuracy: 0.7,
 };
+
+let captain: string;
+let ship: string;
+const alienCount: number = 5;
+
+const CAPTAIN_HIT_DIALOG = 'Yes! Direct Hit!';
+const CAPTAIN_MISS_DIALOG = 'Rats! We missed!';
+const CAPTAIN_DESTROY_DIALOG = 'Another one bites the dust!';
+
+const OMICRON_HIT_DIALOG = 'Hit!! Soon you will meet your fate!';
+const OMICRON_MISS_DIALOG = 'Miss? Unacceptable! Recalibrate lasers!';
+const OMICRON_DESTROY_DIALOG = 'MUAH AHAH AH! Doooom!';
 
 const gameArea = document.getElementById('game-area');
 const selectCaptainModal = document.getElementById('captain-modal');
@@ -21,15 +33,20 @@ const backdrop = document.getElementById('backdrop');
 
 const setCaptain = document.getElementById('captain');
 const setShip = document.getElementById('player-ship');
+const shipCount = document.getElementById('ship-count');
+const playerHull = document.getElementById('player-hull');
+const omicronHull = document.getElementById('omicron-hull');
+const playerHullTitle = document.getElementById('player-hull-title');
+const playerBubble = document.getElementById('player-bubble');
+const omicronBubble = document.getElementById('omicron-bubble');
 
-const startGameButton = document.getElementById('start');
+const attackBtn = document.getElementById('attack-btn');
 
 const toggleBackdrop = () => {
   backdrop.classList.remove('visible');
 };
 
 const toggleCaptainModal = () => {
-  console.log('firing');
   selectCaptainModal.classList.remove('visible');
 };
 
@@ -38,13 +55,8 @@ const toggleShipModal = () => {
   toggleBackdrop();
 };
 
-let captain: string;
-let ship: string;
-let alienCount: number;
-
 const selectCaptainHandler = (e) => {
   captain = e.target.id;
-  console.log(captain);
   toggleCaptainModal();
   toggleShipModal();
 };
@@ -53,119 +65,85 @@ const selectShipHandler = (e) => {
   ship = e.target.id;
 
   if (captain === 'zapp-select') {
-    setCaptain.setAttribute('src', 'images/zapp.webp');
+    setCaptain.setAttribute('src', 'images/zapp-main.webp');
     setCaptain.setAttribute('alt', 'Zapp');
   }
   if (ship === 'nimbus-select') {
     setShip.setAttribute('src', 'images/nimbus.webp');
     setShip.setAttribute('alt', 'Nimbus');
     setShip.style.height = '320px';
+    playerHullTitle.innerText = 'Nimbus Hull';
   }
 
   selectShipModal.classList.remove('visible');
   gameArea.classList.remove('opacity');
-
-  // startGame();
+  setOmicronHull(omicronFleet[omicronFleet.length - 1].hull);
 };
 
 const alienShipFactory = (fleetCount) => {
   const alienFleet: Array<Ship> = [];
-  for (let i = 0; i <= fleetCount; i++) {
+  for (let i = 0; i < fleetCount; i++) {
     alienFleet.push({
-      hull: Number(Math.floor(Math.random() * (6 - 3 + 1) + 3).toFixed(3)),
+      hull: Number(Math.floor(Math.random() * (7 - 5 + 1) + 5).toFixed(3)),
       firepower: Math.floor(Math.random() * (4 - 2 + 1) + 2),
       accuracy: (Math.random() * (8 - 6 + 1) + 6) / 10,
     });
   }
+  console.log('GENERATED FLEET ', alienFleet);
   return alienFleet;
 };
 
 const isHit = (accuracy: number): boolean =>
   accuracy > Math.random() ? true : false;
 
-const startGame = () => {
-  const alienFleet: Array<Ship> = alienShipFactory(alienCount);
+const setOmicronHull = (hullValue) => {
+  omicronHull.max = hullValue;
+  omicronHull.value = hullValue;
+};
 
-  let remainingAlienShips = alienCount;
-  let index = 0;
+const speak = (element, dialog) => {
+  element.innerText = dialog;
+  element.style.opacity = 1;
+  setTimeout(() => {
+    element.style.opacity = 0;
+  }, 2500);
+};
 
-  outer: while (remainingAlienShips > 0) {
-    console.log(`#####THE ALIENS HAVE ${remainingAlienShips} MORE SHIPS#####`);
-    // console.log(
-    //   '%c You have done ' + ' damage ',
-    //   'font-style: italic; background: azure; border: 1px solid grey;'
-    // );
-    while (ussAssembly.hull > 0 && alienFleet[index].hull > 0) {
-      if (ussAssembly.hull <= 0) break outer;
-      if (isHit(ussAssembly.accuracy)) {
-        alienFleet[index].hull -= ussAssembly.firepower;
-        console.log('USS ASSEMBLY SCORED A HIT');
-        console.log(`ALIEN SHIP HULL AT ${alienFleet[index].hull}`);
-      } else {
-        console.log('USS ASSEMBLY MISSED!');
-      }
-      if (alienFleet[index].hull > 0) {
-        console.log('ALIEN SHIP PREPARING TO ATTACK');
-        if (isHit(alienFleet[index].accuracy)) {
-          ussAssembly.hull -= alienFleet[index].firepower;
-          console.log('ALIEN SHIP SCORED A HIT');
-          console.log(`USS ASSEMBLY HULL AT ${ussAssembly.hull}`);
-        } else {
-          console.log('ALIEN SHIP MISSED');
-        }
-      } else {
-        console.log('Alien Ship Destroyed');
-        // const retreat = prompt('Do you want to retreat? (yes or no)');
-        // if (retreat.toLowerCase() === 'yes') break outer;
-      }
-    }
-    remainingAlienShips -= 1;
-  }
-  console.log('SHIPS REMAINING ', remainingAlienShips);
-  if (ussAssembly.hull > 0 && remainingAlienShips === 0) {
-    console.log('YOU WON!!!!');
-  } else if (ussAssembly.hull <= 0) {
-    console.log('YOU LOST!!!');
-  } else if (ussAssembly.hull > 0 && remainingAlienShips > 0) {
-    console.log('YOU RETREATED - COWARD!!!');
+const omicronFleet: Array<Ship> = alienShipFactory(alienCount);
+
+const omicronAttack = () => {
+  if (isHit(omicronFleet[omicronFleet.length - 1].accuracy)) {
+    playerShip.hull -= omicronFleet[omicronFleet.length - 1].firepower;
+    playerHull.value = playerShip.hull;
+    speak(omicronBubble, OMICRON_HIT_DIALOG);
+  } else {
+    speak(omicronBubble, OMICRON_MISS_DIALOG);
   }
 };
 
-// const backdropClickHandler = () => {
-//   toggleModal();
-// };
+const attack = () => {
+  console.log(omicronFleet);
 
+  if (omicronFleet.length > 0) {
+    if (isHit(playerShip.accuracy)) {
+      omicronFleet[omicronFleet.length - 1].hull -= playerShip.firepower;
+      omicronHull.value = omicronFleet[omicronFleet.length - 1].hull;
+      speak(playerBubble, CAPTAIN_HIT_DIALOG);
+    } else {
+      speak(playerBubble, CAPTAIN_MISS_DIALOG);
+    }
+    if (omicronFleet[omicronFleet.length - 1].hull > 0) {
+      setTimeout(omicronAttack, 500);
+    } else {
+      omicronFleet.pop();
+      speak(playerBubble, CAPTAIN_DESTROY_DIALOG);
+      shipCount.innerText = omicronFleet.length.toString();
+      setOmicronHull(omicronFleet[omicronFleet.length - 1].hull);
+    }
+  }
+};
 selectLeela.addEventListener('click', selectCaptainHandler);
 selectZapp.addEventListener('click', selectCaptainHandler);
 selectPlanetExpress.addEventListener('click', selectShipHandler);
 selectNimbus.addEventListener('click', selectShipHandler);
-
-// backdrop.addEventListener('click', backdropClickHandler);
-
-// ####### NOT USED #########
-
-// CSS CONSOLE STYLES
-
-// console.log(
-//   '%cAltering the text experience',
-//   'background-color: fuchsia ; color: white ; font-weight: bold ; ' +
-//     'font-size: 20px ; font-style: italic ; text-decoration: underline ; ' +
-//     "font-family: 'american typewriter' ; text-shadow: 1px 1px 3px black ;"
-// );
-
-// console.log(
-//   '%cWelcome to Space Battle!',
-//   'display: inline-block ; border: 3px solid red ; border-radius: 7px ; ' +
-//     'padding: 10px ; margin: 20px ;' +
-//     'font-size: 24px ; '
-// );
-
-// console.log(
-//   '%cAre you ready?!',
-//   'color: white ; font-weight: bold ; ' +
-//     'margin: 20px ;' +
-//     'font-size: 20px ; font-style: italic ; text-decoration: underline ; ' +
-//     "font-family: 'american typewriter' ; text-shadow: 1px 1px 3px black ;"
-// );
-
-// console.log('space battle');
+attackBtn.addEventListener('click', attack);

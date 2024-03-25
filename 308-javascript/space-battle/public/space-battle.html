@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="scripts/space-battle.js" defer></script>
-    <script src="scripts/vendor.js" defer></script>
     <link rel="stylesheet" href="styles/space-battle.css" />
     <link rel="stylesheet" href="styles/space-background.css" />
     <link rel="stylesheet" href="styles/modal.css" />
     <link rel="stylesheet" href="styles/arcade-button.css" />
+    <link rel="stylesheet" href="styles/speech-bubble.css" />
     <title>Space Battle</title>
   </head>
   <body>
@@ -34,7 +33,7 @@
         <div class="ship__container">
           <div class="ship__item">
             <img
-            id="planet-express-img"
+              id="planet-express-img"
               src="images/planet-express.webp"
               alt="Planet Express"
             />
@@ -49,12 +48,24 @@
         </div>
       </div>
     </div>
+    <!-- <div class="game-finish modal card" id="game-finish-modal">
+      <div class="modal__content">
+        <div id="game-finish-title" class="modal__title">You won!</div>
+        <div class="game-finish__content">
+          <img id="winner-img" src="images/winner.webp" alt="Winner" />
+          <button id="nimbus-select" class="btn btn--success">Nimbus</button>
+        </div>
+      </div>
+    </div> -->
     <div class="main-content">
       <div class="title">SPACE BATTLE</div>
       <div id="game-area" class="opacity">
         <div class="player col">
           <div class="box">
-            <img id="captain" src="images/leela.webp" alt="Leela"/>
+            <img id="captain" src="images/leela.webp" alt="Leela" />
+            <div>
+              <div id="player-bubble" class="bubble grow left">This is such a travesty</div>
+            </div>
           </div>
           <div class="box">
             <img
@@ -66,16 +77,16 @@
           <div class="box">
             <div class="controls">
               <div class="button__container">
-                <button id="attack" class="push--flat"></button>
+                <button id="attack-btn" class="push--flat"></button>
                 <div class="button-action">Attack</div>
               </div>
               <div class="progress__container">
                 <div class="progress__shell">
-                  <progress id="assembly-hull" max="100" value="100">
-                    100%
-                  </progress>
+                  <progress id="player-hull" max="20" value="20">100%</progress>
                 </div>
-                <div class="progress__title">Player Hull Strength</div>
+                <div id="player-hull-title" class="progress__title">
+                  Planet Express Hull
+                </div>
               </div>
               <div class="button__container">
                 <button id="retreat" class="push--flat"></button>
@@ -86,6 +97,9 @@
         </div>
         <div class="omicron col">
           <div class="box">
+            <div>
+              <div id="omicron-bubble" class="bubble grow right">This is such a travesty.  Who is going to pay for this?</div>
+            </div>
             <img id="omicron-lrrrr" src="images/lrrrr.webp" alt="Lrrrr" />
           </div>
           <div class="box">
@@ -97,37 +111,23 @@
           </div>
           <div class="box">
             <div class="controls">
-              <div class="control-info">
-              </div>
+              <div class="control-info"></div>
               <div class="progress__container">
                 <div class="progress__shell">
-                  <progress id="assembly-hull" max="100" value="100">
-                    100%
-                  </progress>
+                  <progress id="omicron-hull" max="5" value="5">100%</progress>
                 </div>
-                <div class="progress__title">Omicron Hull Strength</div>
+                <div id="omicron-hull-title" class="progress__title">
+                  Omicron Hull
+                </div>
               </div>
               <div class="control-info">
-                <div class="ship-count">5</div>
+                <div id="ship-count" class="ship-count">5</div>
                 <div class="button-action">Ships</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- <section id="hull-levels">
-        <h2>USS Assembly Hull Strength</h2>
-        <progress id="alien-hull" max="100" value="100">100%</progress>
-        <h2>PLAYER HEALTH<span id="bonus-life">1</span></h2>
-        <progress id="assembly-hull" max="100" value="100">100%</progress>
-      </section>
-      <section id="controls">
-        <button id="attack-btn">ATTACK</button>
-        <button id="retreat-btn">RETREAT</button>
-        <button id="strong-attack-btn">STRONG ATTACK</button>
-      <button id="heal-btn">HEAL</button>
-      <button id="log-btn">SHOW LOG</button>
-      </section> -->
     </div>
     <div class="stars-backdrop">
       <div class="stars">
@@ -184,6 +184,5 @@
       </div>
     </div>
     <script src="scripts/space-battle.js" defer></script>
-    <script src="scripts/vendor.js" defer></script>
   </body>
 </html>
