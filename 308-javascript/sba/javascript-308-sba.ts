@@ -4,14 +4,24 @@ import {
   LEARNER_SUBMISSIONS_DATA,
   CourseInfo,
   AssignmentGroup,
+  Assignment,
   LearnerSubmission,
 } from './data';
 
+type ResultData =
+  | {
+      id: number;
+      avg: number;
+      [key: number]: number;
+    }
+  | undefined;
 
 const getUniqueLearners = (learners: Array<LearnerSubmission>): Array<number> =>
   learners
-    .map((learner) => learner.learner_id)
-    .filter((id, i, curr) => curr.indexOf(id) === i);
+    .map((learner: LearnerSubmission): number => learner.learner_id)
+    .filter(
+      (id: number, i: number, curr: number[]): boolean => curr.indexOf(id) === i
+    );
 
 const sortLearnersByID = (
   learnerIds: Array<number>,
@@ -29,18 +39,19 @@ const sortLearnersByID = (
 };
 
 const calcAvg = (numArr: Array<number>, denomArr: Array<number>): number => {
-  const numerator = numArr.reduce((acc, curr) => acc + curr, 0);
-  const denominator = denomArr.reduce((acc, curr) => acc + curr, 0);
+  const numerator: number = numArr.reduce((acc, curr) => acc + curr, 0);
+  const denominator: number = denomArr.reduce((acc, curr) => acc + curr, 0);
 
   return numerator / denominator;
 };
 
 const mapLearners = (
   sortedLearners: Array<Array<LearnerSubmission>>,
-  assignments
+  assignments: Array<Assignment>
 ) =>
-  sortedLearners.map((learnerData: Array<LearnerSubmission>) => {
-    const learnerResults = {};
+  sortedLearners.map((learnerData: Array<LearnerSubmission>): ResultData => {
+    const learnerResults: ResultData = undefined;
+
     const numeratorWeight: Array<number> = [];
     const denomninatroWeight: Array<number> = [];
 
