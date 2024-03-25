@@ -8,18 +8,6 @@ label {
   color: #464646;
 }
 
-input {
-  font: inherit;
-  border: 1px solid #ccc;
-  padding: 0.4rem 0.2rem;
-  color: #383838;
-}
-
-input:focus {
-  outline: none;
-  background: #fff1c4;
-}
-
 .btn {
   font: inherit;
   padding: 0.5rem 1.5rem;
@@ -53,8 +41,8 @@ input:focus {
   background-color: var(--bg-red);
 }
 
-.captain{
-  display: none
+.captain {
+  display: none;
 }
 
 .captain.visible {
@@ -108,15 +96,14 @@ input:focus {
   pointer-events: all;
 }
 
-#captain-modal .modal__content, #ship-modal .modal__content {
+.modal__content {
   display: flex;
   flex-direction: column;
 }
 
-
 .captain__container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .ship__container {
@@ -126,7 +113,8 @@ input:focus {
   align-items: stretch;
 }
 
-.captain__item, .ship__item {
+.captain__item,
+.ship__item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,17 +130,17 @@ input:focus {
   width: 120px;
 }
 
-#zapp {
+#zapp-img {
   height: 500px;
 }
 
-#planet-express {
+#planet-express-img {
   width: 500px;
   height: auto;
   margin: auto;
 }
 
-#nimbus {
+#nimbus-img {
   width: 400px;
   height: auto;
 }
@@ -160,6 +148,10 @@ input:focus {
 .ship__item button {
   margin-top: 20px;
   width: 160px;
+}
+
+.game-finish__content img {
+  width: 800px;
 }
 
 @keyframes fade-slide-in {
@@ -171,15 +163,14 @@ input:focus {
   }
 }
 
-
 @media (min-width: 768px) {
   #captain-modal {
     width: 45rem;
-    left: calc(50% - 20rem);
+    left: calc(50% - 22.5rem);
   }
 
   #ship-modal {
     width: 65.7rem;
-    left: calc(50% - 30rem);
+    left: calc(50% - 32.5rem);
   }
 }
