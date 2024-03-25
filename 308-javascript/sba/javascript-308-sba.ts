@@ -27,7 +27,7 @@ const sortLearnersByID = (
   learnerIds: Array<number>,
   learners: Array<LearnerSubmission>
 ): Array<Array<LearnerSubmission>> => {
-  const sortedLearners = [];
+  const sortedLearners: Array<Array<LearnerSubmission>> = [];
   learnerIds.forEach((id) => {
     const student = [];
     learners.forEach(
@@ -84,23 +84,27 @@ const getLearnerData = (
     if (assignmentGroup.course_id != courseInfo.id)
       throw Error('Assignment Group and Course IDs do not match');
 
-    const uniqueLearnerIds = getUniqueLearners(learnerSubmissions);
+    const uniqueLearnerIds: Array<number> =
+      getUniqueLearners(learnerSubmissions);
 
-    const sortedLearners = sortLearnersByID(
+    const sortedLearners: Array<Array<LearnerSubmission>> = sortLearnersByID(
       uniqueLearnerIds,
       learnerSubmissions
     );
 
     const { assignments } = assignmentGroup;
 
-    const mappedLearners: Array<any> = mapLearners(sortedLearners, assignments);
+    const mappedLearners: Array<ResultData> = mapLearners(
+      sortedLearners,
+      assignments
+    );
     return mappedLearners;
   } catch (error) {
     console.log(error);
   }
 };
 
-const learnerData = getLearnerData(
+const learnerData: Array<ResultData> = getLearnerData(
   COURSE_INFO_DATA,
   ASSIGNMENT_GROUP_DATA,
   LEARNER_SUBMISSIONS_DATA
