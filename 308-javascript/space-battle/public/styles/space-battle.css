@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+:root {
+  --bg-red: #dc3545;
+  --color-blue: #1e818f;
+  --color-blue-subtle: #3cc5d7;
+  --color-green: #007f73;
+  --color-green-subtle: #4ccd99;
+  --color-yellow: #ffc700;
+  --color-yellow-subtle: #faf6b8;
+  --color-grey: #555555;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* font-family: 'Lucida Grande', sans-serif; */
+  font-family: 'Architects Daughter', cursive;
+  margin: 0;
+}
+
+.main-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 95vw;
+  height: 95vh;
+  padding: 20px;
+  border: 2px solid white;
+}
+
+.game-area {
+  display: flex;
+  height: 100vh;
+  justify-content: space-between;
+
+  border: 2px solid blue;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  
+}
+
+.box {
+  display: flex;
+  height: 33%;
+  border: 3px solid pink;
+}
+
+.player {
+  border: 2px solid green;
+}
+
+#player-captain, #omicron-lrrrr {
+  height: 200px;
+  object-fit: contain;
+  /* border: 1px solid white; */
+
+}
+
+#player-ship {
+  height: 150px;
+  object-fit: contain;
+  align-self: center;
+  /* border: 1px solid white; */
+}
+
+.omicron {
+  border: 2px solid orange;
+}
+
+#omicron-lrrrr {
+  margin-left: auto;
+}
+
+#omicron-ship {
+  height: 150px;
+  object-fit:contain;
+  margin-left: auto;
+  align-self: center;
+}
+
+
+.title {
+  color: white;
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 1rem 0.5rem;
+}
+
+.progress__container {
+  width: 80%;
+}
+
+progress {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 80%;
+  height: 2rem;
+  color: #ff0062;
+  border: 1px solid var(--bg-red);
+}
+
+progress[value]::-webkit-progress-bar,
+progress[value] {
+  background-color: #eee;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: var(--bg-red);
+  transition: all 0.2s ease-out;
+}
+
+progress[value]::-moz-progress-bar {
+  background-color: var(--bg-red);
+  transition: all 0.2s ease-out;
+}
+
+#hull-levels,
+#controls {
+  margin: 2rem auto;
+  width: 30rem;
+  text-align: center;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  background: white;
+}
+
+#controls {
+  display: flex;
+  flex-direction: column;
+}
+
+#bonus-life {
+  font-weight: bold;
+  color: white;
+  background: #ff0062;
+  border: 1px solid #ff0062;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+  margin: 0 0.5rem;
+}
