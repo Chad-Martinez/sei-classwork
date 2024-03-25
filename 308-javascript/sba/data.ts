@@ -17,8 +17,8 @@ type Assignment = {
 
 type AssignmentGroup = {
   id: number;
-  name: string;
-  course_id: number;
+  name: CourseInfo['name'];
+  course_id: CourseInfo['id'];
   group_weight: number;
   assignments: Array<Assignment>;
 };
@@ -57,7 +57,7 @@ type Submission = {
 
 type LearnerSubmission = {
   learner_id: number;
-  assignment_id: number;
+  assignment_id: Assignment['id'];
   submission: Submission;
 };
 
