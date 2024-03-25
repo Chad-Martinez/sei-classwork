@@ -12,18 +12,18 @@
     <title>Space Battle</title>
   </head>
   <body>
-    <!-- <div id="backdrop" class="visible"></div> -->
-    <!-- <div class="captain modal card visible" id="captain-modal">
+    <div id="backdrop" class="visible"></div>
+    <div class="captain modal card visible" id="captain-modal">
       <div class="modal__content">
-        <div class="modal__title">Select your Capatin</div>
+        <div class="modal__title">Select your Captain</div>
         <div class="captain__container">
           <div class="captain__item">
-            <img id="leela" src="images/leela.webp" alt="Leela" />
-            <button id="select-leela" class="btn btn--success">LEELA</button>
+            <img id="leela-img" src="images/leela.webp" alt="Leela" />
+            <button id="leela-select" class="btn btn--success">LEELA</button>
           </div>
           <div class="captain__item">
-            <img id="zapp" src="images/zapp.webp" alt="Zapp" />
-            <button id="select-zapp" class="btn btn--success">ZAPP</button>
+            <img id="zapp-img" src="images/zapp.webp" alt="Zapp" />
+            <button id="zapp-select" class="btn btn--success">ZAPP</button>
           </div>
         </div>
       </div>
@@ -34,27 +34,27 @@
         <div class="ship__container">
           <div class="ship__item">
             <img
-              id="planet-express"
+            id="planet-express-img"
               src="images/planet-express.webp"
               alt="Planet Express"
             />
-            <button id="select-planet-express" class="btn btn--success">
+            <button id="planet-express-select" class="btn btn--success">
               Planet Express
             </button>
           </div>
           <div class="ship__item">
-            <img id="nimbus" src="images/nimbus.webp" alt="Nimbus" />
-            <button id="select-nimbus" class="btn btn--success">Nimbus</button>
+            <img id="nimbus-img" src="images/nimbus.webp" alt="Nimbus" />
+            <button id="nimbus-select" class="btn btn--success">Nimbus</button>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <div class="main-content">
       <div class="title">SPACE BATTLE</div>
-      <div class="game-area">
+      <div id="game-area" class="opacity">
         <div class="player col">
           <div class="box">
-            <img id="player-captain" src="images/leela.webp" alt="Leela" />
+            <img id="captain" src="images/leela.webp" alt="Leela"/>
           </div>
           <div class="box">
             <img
@@ -98,8 +98,6 @@
           <div class="box">
             <div class="controls">
               <div class="control-info">
-                <!-- <button id="attack" class="push--skeuo"></button>
-                <div class="button-action">Attack</div> -->
               </div>
               <div class="progress__container">
                 <div class="progress__shell">

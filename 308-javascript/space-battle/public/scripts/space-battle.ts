@@ -10,13 +10,18 @@ const ussAssembly: Ship = {
   accuracy: 0.7,
 };
 
+const gameArea = document.getElementById('game-area');
 const selectCaptainModal = document.getElementById('captain-modal');
-const selectLeela = document.getElementById('select-leela');
-const selectZapp = document.getElementById('select-zapp');
+const selectLeela = document.getElementById('leela-select');
+const selectZapp = document.getElementById('zapp-select');
 const selectShipModal = document.getElementById('ship-modal');
-const selectPlanetExpress = document.getElementById('select-planet-express');
-const selectNimbus = document.getElementById('select-nimbus');
+const selectPlanetExpress = document.getElementById('planet-express-select');
+const selectNimbus = document.getElementById('nimbus-select');
 const backdrop = document.getElementById('backdrop');
+
+const setCaptain = document.getElementById('captain');
+const setShip = document.getElementById('player-ship');
+
 const startGameButton = document.getElementById('start');
 
 const toggleBackdrop = () => {
@@ -38,16 +43,28 @@ let ship: string;
 let alienCount: number;
 
 const selectCaptainHandler = (e) => {
-  captain = e.srcElement.innerText;
-  console.log('CAPTAIN ', captain);
+  captain = e.target.id;
+  console.log(captain);
   toggleCaptainModal();
   toggleShipModal();
 };
 
 const selectShipHandler = (e) => {
-  ship = e.srcElement.innerText;
-  console.log('SHIP ', ship);
+  ship = e.target.id;
+
+  if (captain === 'zapp-select') {
+    setCaptain.setAttribute('src', 'images/zapp.webp');
+    setCaptain.setAttribute('alt', 'Zapp');
+  }
+  if (ship === 'nimbus-select') {
+    setShip.setAttribute('src', 'images/nimbus.webp');
+    setShip.setAttribute('alt', 'Nimbus');
+    setShip.style.height = '320px';
+  }
+
   selectShipModal.classList.remove('visible');
+  gameArea.classList.remove('opacity');
+
   // startGame();
 };
 

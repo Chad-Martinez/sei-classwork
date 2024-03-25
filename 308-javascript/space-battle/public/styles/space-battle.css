@@ -28,10 +28,14 @@ body {
   padding: 20px;
 }
 
-.game-area {
+#game-area {
   display: flex;
   height: 100vh;
   justify-content: space-between;
+}
+
+#game-area.opacity {
+  opacity: 0;
 }
 
 .col {
@@ -39,7 +43,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   width: 50%;
-  
 }
 
 .box {
@@ -47,7 +50,7 @@ body {
   height: 33%;
 }
 
-#player-captain, #omicron-lrrrr {
+#captain, #omicron-lrrrr {
   height: 200px;
   object-fit: contain;
 }
