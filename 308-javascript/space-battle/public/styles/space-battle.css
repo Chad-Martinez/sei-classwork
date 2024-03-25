@@ -15,7 +15,6 @@
 }
 
 body {
-  /* font-family: 'Lucida Grande', sans-serif; */
   font-family: 'Architects Daughter', cursive;
   margin: 0;
 }
@@ -27,15 +26,12 @@ body {
   width: 95vw;
   height: 95vh;
   padding: 20px;
-  border: 2px solid white;
 }
 
 .game-area {
   display: flex;
   height: 100vh;
   justify-content: space-between;
-
-  border: 2px solid blue;
 }
 
 .col {
@@ -49,29 +45,17 @@ body {
 .box {
   display: flex;
   height: 33%;
-  border: 3px solid pink;
-}
-
-.player {
-  border: 2px solid green;
 }
 
 #player-captain, #omicron-lrrrr {
   height: 200px;
   object-fit: contain;
-  /* border: 1px solid white; */
-
 }
 
 #player-ship {
   height: 150px;
   object-fit: contain;
   align-self: center;
-  /* border: 1px solid white; */
-}
-
-.omicron {
-  border: 2px solid orange;
 }
 
 #omicron-lrrrr {
@@ -96,17 +80,55 @@ h2 {
   margin: 1rem 0.5rem;
 }
 
+.controls {
+  display:flex;
+  margin-top: auto;
+  width: 100%;
+  justify-content: space-between;
+  color: white;
+  font-size: 1.8rem;
+}
+
+.button__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.control-info {
+  height: 169px;
+  width: 128px;
+}
+
+.ship-count {
+  font-size: 5.5rem;
+}
+
 .progress__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 2;
+}
+
+.progress__shell {
+  display:flex;
+  align-items: center;
+  justify-content: center;
   width: 80%;
+  height: 40px;
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 15px;
 }
 
 progress {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 80%;
+  width: 100%;
   height: 2rem;
-  color: #ff0062;
+  color: var(--bg-red);
   border: 1px solid var(--bg-red);
 }
 
@@ -151,4 +173,8 @@ progress[value]::-moz-progress-bar {
   border-radius: 10px;
   text-align: center;
   margin: 0 0.5rem;
+}
+
+.stars-backdrop {
+  z-index: -2;
 }

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/space-battle.css" />
     <link rel="stylesheet" href="styles/space-background.css" />
     <link rel="stylesheet" href="styles/modal.css" />
+    <link rel="stylesheet" href="styles/arcade-button.css" />
     <title>Space Battle</title>
   </head>
   <body>
@@ -54,7 +55,6 @@
         <div class="player col">
           <div class="box">
             <img id="player-captain" src="images/leela.webp" alt="Leela" />
-            
           </div>
           <div class="box">
             <img
@@ -64,15 +64,28 @@
             />
           </div>
           <div class="box">
-            <button id="heal-btn">HEAL</button>
-            <div class="progress__container">
-              <progress id="assembly-hull" max="100" value="100">100%</progress>
+            <div class="controls">
+              <div class="button__container">
+                <button id="attack" class="push--flat"></button>
+                <div class="button-action">Attack</div>
+              </div>
+              <div class="progress__container">
+                <div class="progress__shell">
+                  <progress id="assembly-hull" max="100" value="100">
+                    100%
+                  </progress>
+                </div>
+                <div class="progress__title">Player Hull Strength</div>
+              </div>
+              <div class="button__container">
+                <button id="retreat" class="push--flat"></button>
+                <div class="button-action">Retreat</div>
+              </div>
             </div>
           </div>
         </div>
         <div class="omicron col">
           <div class="box">
-            
             <img id="omicron-lrrrr" src="images/lrrrr.webp" alt="Lrrrr" />
           </div>
           <div class="box">
@@ -83,15 +96,26 @@
             />
           </div>
           <div class="box">
-            <div class="progress__container">
-              <progress id="alien-hull" max="100" value="100">100%</progress>
+            <div class="controls">
+              <div class="control-info">
+                <!-- <button id="attack" class="push--skeuo"></button>
+                <div class="button-action">Attack</div> -->
+              </div>
+              <div class="progress__container">
+                <div class="progress__shell">
+                  <progress id="assembly-hull" max="100" value="100">
+                    100%
+                  </progress>
+                </div>
+                <div class="progress__title">Omicron Hull Strength</div>
+              </div>
+              <div class="control-info">
+                <div class="ship-count">5</div>
+                <div class="button-action">Ships</div>
+              </div>
             </div>
           </div>
         </div>
-        <!-- <div class="bottom row">
-         
-          
-        </div> -->
       </div>
       <!-- <section id="hull-levels">
         <h2>USS Assembly Hull Strength</h2>
@@ -107,57 +131,59 @@
       <button id="log-btn">SHOW LOG</button>
       </section> -->
     </div>
-    <div class="stars">
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
-      <div class="star"></div>
+    <div class="stars-backdrop">
+      <div class="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+      </div>
     </div>
     <script src="scripts/space-battle.js" defer></script>
     <script src="scripts/vendor.js" defer></script>
