@@ -26,10 +26,11 @@ const sortLearnersByID = (
   learners: Array<LearnerSubmission>
 ): Array<Array<LearnerSubmission>> => {
   const sortedLearners: Array<Array<LearnerSubmission>> = [];
-  learnerIds.forEach((id) => {
-    const student = [];
+  learnerIds.forEach((id: number) => {
+    const student: Array<LearnerSubmission> = [];
     learners.forEach(
-      (learner) => id == learner.learner_id && student.push(learner)
+      (learner: LearnerSubmission) =>
+        id == learner.learner_id && student.push(learner)
     );
     sortedLearners.push(student);
   });
@@ -44,8 +45,8 @@ const calculateScores = (
   const numeratorWeight: Array<number> = [];
   const denomninatroWeight: Array<number> = [];
 
-  learnerData.forEach((assignment) => {
-    const { assignment_id, submission } = assignment;
+  learnerData.forEach((learnerSub: LearnerSubmission) => {
+    const { assignment_id, submission } = learnerSub;
 
     let i: number = 0;
     while (i < assignments.length) {
@@ -61,7 +62,7 @@ const calculateScores = (
         isScorable &&
         pointsPossible != 0
       ) {
-        let score = submission.score;
+        let score: number = submission.score;
         if (pastDue) {
           score = score * 0.9;
         }

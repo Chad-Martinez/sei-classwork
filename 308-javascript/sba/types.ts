@@ -31,7 +31,7 @@ export type LearnerSubmission = {
 
 export type ResultData =
   | {
-      id: number;
+      id: LearnerSubmission['learner_id'];
       avg: number;
       [key: number]: number;
     }
