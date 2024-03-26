@@ -44,17 +44,14 @@ const sortLearnersByID = (
 const addNums = (numArr: Array<number>): number =>
   numArr.reduce((acc: number, curr: number): number => acc + curr, 0);
 
-const getAvgs = (numArr: Array<number>, denomArr: Array<number>): number => {
-  return addNums(numArr) / addNums(denomArr);
-};
+const getAvgs = (numArr: Array<number>, denomArr: Array<number>): number =>
+  addNums(numArr) / addNums(denomArr);
 
-const isGradeable = (dueDate: string): boolean => {
-  return Date.parse(dueDate) <= Date.now();
-};
+const isGradeable = (dueDate: string): boolean =>
+  Date.parse(dueDate) <= Date.now();
 
-const isPastDue = (dateSubmitted: string, dateDue: string): boolean => {
-  return Date.parse(dateSubmitted) > Date.parse(dateDue);
-};
+const isPastDue = (dateSubmitted: string, dateDue: string): boolean =>
+  Date.parse(dateSubmitted) > Date.parse(dateDue);
 
 const calculateScores = (
   learnerData: Array<LearnerSubmission>,
@@ -67,7 +64,8 @@ const calculateScores = (
   learnerData.forEach((assignment) => {
     const { assignment_id, submission } = assignment;
 
-    for (let i: number = 0; i < assignments.length; i++) {
+    let i: number = 0;
+    while (i < assignments.length) {
       const isScorable: boolean = isGradeable(assignments[i].due_at);
       const pastDue: boolean = isPastDue(
         submission.submitted_at,
@@ -89,7 +87,10 @@ const calculateScores = (
 
         numeratorWeight.push(score);
         denomninatroWeight.push(pointsPossible);
+        i++;
       } else {
+        i++;
+        console.log('INDEX IN CONTINUE', i);
         continue;
       }
     }
