@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/space-battle.css" />
+    <link rel="stylesheet" href="styles/space-background.css" />
+    <link rel="stylesheet" href="styles/modal.css" />
+    <link rel="stylesheet" href="styles/arcade-button.css" />
+    <link rel="stylesheet" href="styles/speech-bubble.css" />
+    <title>Space Battle</title>
+  </head>
+  <body>
+    <div id="backdrop" class="visible"></div>
+    <div class="captain modal card visible" id="captain-modal">
+      <div class="modal__content">
+        <div class="modal__title">Select your Captain</div>
+        <div class="captain__container">
+          <div class="captain__item">
+            <img id="leela-img" src="images/leela.webp" alt="Leela" />
+            <button id="leela-select" class="btn btn--success">LEELA</button>
+          </div>
+          <div class="captain__item">
+            <img id="zapp-img" src="images/zapp.webp" alt="Zapp" />
+            <button id="zapp-select" class="btn btn--success">ZAPP</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ship modal card" id="ship-modal">
+      <div class="modal__content">
+        <div class="modal__title">Select your vessel</div>
+        <div class="ship__container">
+          <div class="ship__item">
+            <img
+              id="planet-express-img"
+              src="images/planet-express.webp"
+              alt="Planet Express"
+            />
+            <button id="planet-express-select" class="btn btn--success">
+              Planet Express
+            </button>
+          </div>
+          <div class="ship__item">
+            <img id="nimbus-img" src="images/nimbus.webp" alt="Nimbus" />
+            <button id="nimbus-select" class="btn btn--success">Nimbus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="game-finish modal card" id="game-finish-modal">
+      <div class="modal__content">
+        <div id="game-finish-title" class="modal__title">You won!</div>
+        <div class="game-finish__content">
+          <img id="winner-img" src="images/winner.webp" alt="Winner" />
+          <button id="nimbus-select" class="btn btn--success">Nimbus</button>
+        </div>
+      </div>
+    </div> -->
+    <div class="main-content">
+      <div class="title">SPACE BATTLE</div>
+      <div id="game-area" class="opacity">
+        <div class="player col">
+          <div class="box">
+            <img id="captain" src="images/leela.webp" alt="Leela" />
+            <div>
+              <div id="player-bubble" class="bubble grow left">This is such a travesty</div>
+            </div>
+          </div>
+          <div class="box">
+            <img
+              id="player-ship"
+              src="images/planet-express.webp"
+              alt="Planet Express"
+            />
+          </div>
+          <div class="box">
+            <div class="controls">
+              <div class="button__container">
+                <button id="attack-btn" class="push--flat"></button>
+                <div class="button-action">Attack</div>
+              </div>
+              <div class="progress__container">
+                <div class="progress__shell">
+                  <progress id="player-hull" max="20" value="20">100%</progress>
+                </div>
+                <div id="player-hull-title" class="progress__title">
+                  Planet Express Hull
+                </div>
+              </div>
+              <div class="button__container">
+                <button id="retreat" class="push--flat"></button>
+                <div class="button-action">Retreat</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="omicron col">
+          <div class="box">
+            <div>
+              <div id="omicron-bubble" class="bubble grow right">This is such a travesty.  Who is going to pay for this?</div>
+            </div>
+            <img id="omicron-lrrrr" src="images/lrrrr.webp" alt="Lrrrr" />
+          </div>
+          <div class="box">
+            <img
+              id="omicron-ship"
+              src="images/omicron-ship.webp"
+              alt="Omicron Ship"
+            />
+          </div>
+          <div class="box">
+            <div class="controls">
+              <div class="control-info"></div>
+              <div class="progress__container">
+                <div class="progress__shell">
+                  <progress id="omicron-hull" max="5" value="5">100%</progress>
+                </div>
+                <div id="omicron-hull-title" class="progress__title">
+                  Omicron Hull
+                </div>
+              </div>
+              <div class="control-info">
+                <div id="ship-count" class="ship-count">5</div>
+                <div class="button-action">Ships</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stars-backdrop">
+      <div class="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+      </div>
+    </div>
+    <script src="scripts/space-battle.js" defer></script>
+  </body>
+</html>
