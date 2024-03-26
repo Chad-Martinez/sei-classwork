@@ -2,11 +2,14 @@ import {
   COURSE_INFO_DATA,
   ASSIGNMENT_GROUP_DATA,
   LEARNER_SUBMISSIONS_DATA,
+} from './data';
+
+import {
   CourseInfo,
   AssignmentGroup,
   Assignment,
   LearnerSubmission,
-} from './data';
+} from './types';
 
 type ResultData =
   | {
@@ -14,7 +17,7 @@ type ResultData =
       avg: number;
       [key: number]: number;
     }
-  | undefined;
+  | {};
 
 const getUniqueLearners = (learners: Array<LearnerSubmission>): Array<number> =>
   learners
@@ -38,11 +41,61 @@ const sortLearnersByID = (
   return sortedLearners;
 };
 
-const calcAvg = (numArr: Array<number>, denomArr: Array<number>): number => {
-  const numerator: number = numArr.reduce((acc, curr) => acc + curr, 0);
-  const denominator: number = denomArr.reduce((acc, curr) => acc + curr, 0);
+const addNums = (numArr: Array<number>): number =>
+  numArr.reduce((acc: number, curr: number): number => acc + curr, 0);
 
-  return numerator / denominator;
+const getAvgs = (numArr: Array<number>, denomArr: Array<number>): number => {
+  return addNums(numArr) / addNums(denomArr);
+};
+
+const isGradeable = (dueDate: string): boolean => {
+  return Date.parse(dueDate) <= Date.now();
+};
+
+const isPastDue = (dateSubmitted: string, dateDue: string): boolean => {
+  return Date.parse(dateSubmitted) > Date.parse(dateDue);
+};
+
+const calculateScores = (
+  learnerData: Array<LearnerSubmission>,
+  assignments: Array<Assignment>
+): ResultData => {
+  const learnerResults: ResultData = {};
+  const numeratorWeight: Array<number> = [];
+  const denomninatroWeight: Array<number> = [];
+
+  learnerData.forEach((assignment) => {
+    const { assignment_id, submission } = assignment;
+
+    for (let i: number = 0; i < assignments.length; i++) {
+      const isScorable: boolean = isGradeable(assignments[i].due_at);
+      const pastDue: boolean = isPastDue(
+        submission.submitted_at,
+        assignments[i].due_at
+      );
+      const pointsPossible: number = assignments[i].points_possible;
+
+      if (
+        assignment_id == assignments[i].id &&
+        isScorable &&
+        pointsPossible != 0
+      ) {
+        let score = submission.score;
+        if (pastDue) {
+          score = score * 0.9;
+        }
+        const assignmentAvg: number = score / pointsPossible;
+        learnerResults[assignment_id] = assignmentAvg;
+
+        numeratorWeight.push(score);
+        denomninatroWeight.push(pointsPossible);
+      } else {
+        continue;
+      }
+    }
+  });
+  learnerResults['avg'] = getAvgs(numeratorWeight, denomninatroWeight);
+  return learnerResults;
 };
 
 const mapLearners = (
@@ -50,29 +103,12 @@ const mapLearners = (
   assignments: Array<Assignment>
 ) =>
   sortedLearners.map((learnerData: Array<LearnerSubmission>): ResultData => {
-    const learnerResults: ResultData = undefined;
+    const scoreAverages: ResultData = calculateScores(learnerData, assignments);
 
-    const numeratorWeight: Array<number> = [];
-    const denomninatroWeight: Array<number> = [];
-
-    learnerResults['id'] = learnerData[0].learner_id;
-
-    learnerData.forEach((assignment) => {
-      const { assignment_id, submission } = assignment;
-
-      for (let i = 0; i < assignments.length; i++) {
-        if (assignment_id == assignments[i].id) {
-          const assignmentAvg =
-            submission.score / assignments[i].points_possible;
-          learnerResults[assignment_id] = assignmentAvg;
-          numeratorWeight.push(submission.score);
-          denomninatroWeight.push(assignments[i].points_possible);
-        }
-      }
-    });
-    learnerResults['avg'] = calcAvg(numeratorWeight, denomninatroWeight);
-
-    return learnerResults;
+    return {
+      id: learnerData[0].learner_id,
+      ...scoreAverages,
+    };
   });
 
 const getLearnerData = (
@@ -86,21 +122,15 @@ const getLearnerData = (
 
     const uniqueLearnerIds: Array<number> =
       getUniqueLearners(learnerSubmissions);
-
     const sortedLearners: Array<Array<LearnerSubmission>> = sortLearnersByID(
       uniqueLearnerIds,
       learnerSubmissions
     );
-
     const { assignments } = assignmentGroup;
 
-    const mappedLearners: Array<ResultData> = mapLearners(
-      sortedLearners,
-      assignments
-    );
-    return mappedLearners;
+    return mapLearners(sortedLearners, assignments);
   } catch (error) {
-    console.log(error);
+    console.log('ERROR ', error);
   }
 };
 
