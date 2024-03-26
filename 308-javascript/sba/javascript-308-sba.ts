@@ -90,7 +90,6 @@ const calculateScores = (
         i++;
       } else {
         i++;
-        console.log('INDEX IN CONTINUE', i);
         continue;
       }
     }
