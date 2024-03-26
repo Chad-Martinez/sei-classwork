@@ -1,26 +1,8 @@
-export type CourseInfo = {
-  id: number;
-  name: string;
-};
+import { CourseInfo, AssignmentGroup, LearnerSubmission } from './types';
 
 export const COURSE_INFO_DATA: CourseInfo = {
   id: 451,
   name: 'Introduction to JavaScript',
-};
-
-export type Assignment = {
-  id: number;
-  name: string;
-  due_at: string;
-  points_possible: number;
-};
-
-export type AssignmentGroup = {
-  id: number;
-  name: CourseInfo['name'];
-  course_id: CourseInfo['id'];
-  group_weight: number;
-  assignments: Array<Assignment>;
 };
 
 export const ASSIGNMENT_GROUP_DATA: AssignmentGroup = {
@@ -48,17 +30,6 @@ export const ASSIGNMENT_GROUP_DATA: AssignmentGroup = {
       points_possible: 500,
     },
   ],
-};
-
-export type Submission = {
-  submitted_at: string;
-  score: number;
-};
-
-export type LearnerSubmission = {
-  learner_id: number;
-  assignment_id: Assignment['id'];
-  submission: Submission;
 };
 
 export const LEARNER_SUBMISSIONS_DATA: Array<LearnerSubmission> = [
