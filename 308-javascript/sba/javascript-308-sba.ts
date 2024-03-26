@@ -9,17 +9,10 @@ import {
   AssignmentGroup,
   Assignment,
   LearnerSubmission,
+  ResultData,
 } from './types';
 
 import { getAvgs, isGradeable, isPastDue } from './helpers';
-
-type ResultData =
-  | {
-      id: number;
-      avg: number;
-      [key: number]: number;
-    }
-  | {};
 
 const getUniqueLearners = (learners: Array<LearnerSubmission>): Array<number> =>
   learners

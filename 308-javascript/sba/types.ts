@@ -28,3 +28,11 @@ export type LearnerSubmission = {
   assignment_id: Assignment['id'];
   submission: Submission;
 };
+
+export type ResultData =
+  | {
+      id: number;
+      avg: number;
+      [key: number]: number;
+    }
+  | {};
