@@ -4,7 +4,7 @@ type Ship = {
   accuracy: number;
 };
 
-const playerShip: Ship = {
+const captainShip: Ship = {
   hull: 20,
   firepower: 4,
   accuracy: 0.7,
@@ -39,27 +39,21 @@ const selectNimbus = document.getElementById(
 ) as HTMLButtonElement;
 const backdrop = document.getElementById('backdrop') as HTMLDivElement;
 
-const captain = document.getElementById('captain') as HTMLImageElement;
-const ship = document.getElementById('player-ship') as HTMLImageElement;
-const shipLaser = document.getElementById(
-  'captain-ship-laser'
-) as HTMLImageElement;
+const captain = document.getElementById('captain') as HTMLDivElement;
 const omicronShipCount = document.getElementById(
   'ship-count'
 ) as HTMLDivElement;
-const playerHull = document.getElementById(
-  'player-hull'
+const captainHull = document.getElementById(
+  'captain-hull'
 ) as HTMLProgressElement;
-const omicronShip = document.getElementById('omicron-ship') as HTMLImageElement;
-const omicronLaser = document.getElementById(
-  'omicron-ship-laser'
-) as HTMLImageElement;
+
+const omicron = document.getElementById('omicron') as HTMLDivElement;
 const omicronHull = document.getElementById(
   'omicron-hull'
 ) as HTMLProgressElement;
-const playerHullTitle: HTMLElement =
-  document.getElementById('player-hull-title');
-const playerBubble: HTMLElement = document.getElementById('player-bubble');
+const captainHullTitle: HTMLElement =
+  document.getElementById('captain-hull-title');
+const captainBubble: HTMLElement = document.getElementById('captain-bubble');
 const omicronBubble: HTMLElement = document.getElementById('omicron-bubble');
 
 const attackBtn: HTMLElement = document.getElementById('attack-btn');
@@ -75,7 +69,6 @@ const toggleShipModal = (): void => {
 };
 
 const selectCaptainHandler = (e: InputEvent): void => {
-  console.log(e);
   e.target instanceof HTMLButtonElement
     ? (captainName = e.target.id)
     : (captainName = 'leela-select');
@@ -90,16 +83,18 @@ const selectShipHandler = (e: InputEvent): void => {
     : (shipName = 'planet-express-select');
 
   if (captainName === 'zapp-select') {
-    captain.setAttribute('src', 'images/zapp-main.webp');
-    captain.setAttribute('alt', 'Zapp');
+    const captainImg = captain.children[0]
+      .firstElementChild as HTMLImageElement;
+    captainImg.setAttribute('src', 'images/zapp-main.webp');
+    captainImg.setAttribute('alt', 'Zapp');
   }
   if (shipName === 'nimbus-select') {
+    const ship = captain.children[1].firstElementChild as HTMLImageElement;
     ship.setAttribute('src', 'images/nimbus.webp');
     ship.setAttribute('alt', 'Nimbus');
     ship.style.height = '320px';
-    playerHullTitle.innerText = 'Nimbus Hull';
+    captainHullTitle.innerText = 'Nimbus Hull';
   }
-
   selectShipModal.classList.remove('visible');
   gameArea.classList.remove('opacity');
   setOmicronHull(omicronFleet[omicronFleet.length - 1].hull);
@@ -125,26 +120,41 @@ const setOmicronHull = (hullValue) => {
   omicronHull.value = hullValue;
 };
 
-const speak = (element, dialog) => {
+console.log(captain.children[0].lastElementChild.firstElementChild);
+
+const speak = (element: HTMLElement, dialog: string): void => {
   element.innerText = dialog;
-  element.style.opacity = 1;
+  element.style.opacity = '1';
   setTimeout(() => {
-    element.style.opacity = 0;
-  }, 2500);
+    element.style.opacity = '0';
+  }, 2800);
 };
 
 const omicronFleet: Array<Ship> = alienShipFactory(alienCount);
 
-const fireLasers = (ship: HTMLImageElement): void => {
+const fireLasers = (player: HTMLDivElement): void => {
+  const ship = player.children[1].lastElementChild as HTMLImageElement;
   ship.classList.add('fire');
   setTimeout(() => ship.classList.remove('fire'), 600);
 };
 
+const subtractDamage = (
+  offense: Ship,
+  defense: Ship,
+  defenseHull: HTMLProgressElement
+) => {
+  defense.hull -= offense.firepower;
+  defenseHull.value = defense.hull;
+};
+
 const omicronAttack = (): void => {
   if (isHit(omicronFleet[omicronFleet.length - 1].accuracy)) {
-    fireLasers(omicronLaser);
-    playerShip.hull -= omicronFleet[omicronFleet.length - 1].firepower;
-    playerHull.value = playerShip.hull;
+    fireLasers(omicron);
+    subtractDamage(
+      omicronFleet[omicronFleet.length - 1],
+      captainShip,
+      captainHull
+    );
     speak(omicronBubble, OMICRON_HIT_DIALOG);
   } else {
     speak(omicronBubble, OMICRON_MISS_DIALOG);
@@ -152,24 +162,25 @@ const omicronAttack = (): void => {
 };
 
 const attack = (): void => {
-  console.log(omicronFleet);
-
   if (omicronFleet.length > 0) {
-    if (isHit(playerShip.accuracy)) {
-      fireLasers(shipLaser);
-      omicronFleet[omicronFleet.length - 1].hull -= playerShip.firepower;
-      omicronHull.value = omicronFleet[omicronFleet.length - 1].hull;
-      speak(playerBubble, CAPTAIN_HIT_DIALOG);
+    if (isHit(captainShip.accuracy)) {
+      fireLasers(captain);
+      subtractDamage(
+        captainShip,
+        omicronFleet[omicronFleet.length - 1],
+        omicronHull
+      );
+      speak(captainBubble, CAPTAIN_HIT_DIALOG);
       // console.log('SHIP POSITION ', ship.getBoundingClientRect());
       // ship.classList.add('retreat');
     } else {
-      speak(playerBubble, CAPTAIN_MISS_DIALOG);
+      speak(captainBubble, CAPTAIN_MISS_DIALOG);
     }
     if (omicronFleet[omicronFleet.length - 1].hull > 0) {
       setTimeout(omicronAttack, 500);
     } else {
       omicronFleet.pop();
-      speak(playerBubble, CAPTAIN_DESTROY_DIALOG);
+      speak(captainBubble, CAPTAIN_DESTROY_DIALOG);
       omicronShipCount.innerText = omicronFleet.length.toString();
       setOmicronHull(omicronFleet[omicronFleet.length - 1].hull);
     }
