@@ -125,12 +125,12 @@ const setOmicronHull = (hullValue) => {
   omicronHull.value = hullValue;
 };
 
-const speak = (element, dialog) => {
+const speak = (element: HTMLElement, dialog: string): void => {
   element.innerText = dialog;
-  element.style.opacity = 1;
+  element.style.opacity = '1';
   setTimeout(() => {
-    element.style.opacity = 0;
-  }, 2500);
+    element.style.opacity = '0';
+  }, 2800);
 };
 
 const omicronFleet: Array<Ship> = alienShipFactory(alienCount);
@@ -140,11 +140,23 @@ const fireLasers = (ship: HTMLImageElement): void => {
   setTimeout(() => ship.classList.remove('fire'), 600);
 };
 
+const subtractDamage = (
+  offense: Ship,
+  defense: Ship,
+  defenseHull: HTMLProgressElement
+) => {
+  defense.hull -= offense.firepower;
+  defenseHull.value = defense.hull;
+};
+
 const omicronAttack = (): void => {
   if (isHit(omicronFleet[omicronFleet.length - 1].accuracy)) {
     fireLasers(omicronLaser);
-    playerShip.hull -= omicronFleet[omicronFleet.length - 1].firepower;
-    playerHull.value = playerShip.hull;
+    subtractDamage(
+      omicronFleet[omicronFleet.length - 1],
+      playerShip,
+      playerHull
+    );
     speak(omicronBubble, OMICRON_HIT_DIALOG);
   } else {
     speak(omicronBubble, OMICRON_MISS_DIALOG);
@@ -157,8 +169,11 @@ const attack = (): void => {
   if (omicronFleet.length > 0) {
     if (isHit(playerShip.accuracy)) {
       fireLasers(shipLaser);
-      omicronFleet[omicronFleet.length - 1].hull -= playerShip.firepower;
-      omicronHull.value = omicronFleet[omicronFleet.length - 1].hull;
+      subtractDamage(
+        playerShip,
+        omicronFleet[omicronFleet.length - 1],
+        omicronHull
+      );
       speak(playerBubble, CAPTAIN_HIT_DIALOG);
       // console.log('SHIP POSITION ', ship.getBoundingClientRect());
       // ship.classList.add('retreat');
