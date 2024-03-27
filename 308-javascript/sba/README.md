@@ -1,6 +1,6 @@
 ##### JAVASCRIPT MODULE 308 SBA #####
 
-Written in JavaScript and TypeScript
+Written in TypeScript
 
 Program takes a variety of education insitution data and transforms it a consolidated array of student assignment scores and class weighted average.
 
