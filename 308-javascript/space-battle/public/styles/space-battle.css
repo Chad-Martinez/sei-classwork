@@ -50,11 +50,18 @@ body {
   height: 33%;
 }
 
-.player .box:first-child, .omicron .box:first-child {
+.player .box:first-child,
+.omicron .box:first-child {
   gap: 20px;
 }
 
-#captain, #omicron-lrrrr {
+.laser {
+  position: absolute;
+  z-index: -1;
+}
+
+#captain,
+#omicron-lrrrr {
   height: 200px;
   object-fit: contain;
 }
@@ -63,6 +70,10 @@ body {
   height: 150px;
   object-fit: contain;
   align-self: center;
+}
+
+#captain-ship-laser {
+  transform: translate(130px, 140px) rotateZ(3deg);
 }
 
 #player-bubble {
@@ -79,11 +90,14 @@ body {
 
 #omicron-ship {
   height: 175px;
-  object-fit:contain;
+  object-fit: contain;
   margin-left: auto;
   align-self: center;
 }
 
+#omicron-ship-laser {
+  transform: translate(440px, 150px) rotateZ(-5deg);
+}
 
 .title {
   color: white;
@@ -96,7 +110,7 @@ h2 {
 }
 
 .controls {
-  display:flex;
+  display: flex;
   margin-top: auto;
   width: 100%;
   justify-content: space-between;
@@ -127,7 +141,7 @@ h2 {
 }
 
 .progress__shell {
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 80%;

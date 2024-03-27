@@ -1,0 +1,43 @@
+/* :root {
+    --captain laster
+} */
+
+#captain-ship.retreat {
+  /* position: fixed; */
+  transform: translate(-30px, 300px);
+  /* height: 0px; */
+  animation: blast-off 1s cubic-bezier(1, 0.06, 1, 0.9) forwards;
+}
+
+@keyframes blast-off {
+  from {
+    transform: translate(-350px, 400px);
+  }
+  to {
+    transform: translate(800px, -1300px);
+  }
+}
+
+#captain-ship-laser.fire {
+  animation: captain-fire 0.5s backwards;
+}
+
+@keyframes captain-fire {
+  from {
+  }
+  to {
+    transform: translate(1123px, 140px);
+  }
+}
+
+#omicron-ship-laser.fire {
+  animation: omicron-fire 0.5s backwards;
+}
+
+@keyframes omicron-fire {
+  from {
+  }
+  to {
+    transform: translate(-560px, 140px);
+  }
+}
