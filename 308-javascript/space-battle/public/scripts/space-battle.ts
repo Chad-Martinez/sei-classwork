@@ -50,7 +50,10 @@ const omicronShipCount = document.getElementById(
 const playerHull = document.getElementById(
   'player-hull'
 ) as HTMLProgressElement;
-const omicronShip = document.getElementById('omicron-ship');
+const omicronShip = document.getElementById('omicron-ship') as HTMLImageElement;
+const omicronLaser = document.getElementById(
+  'omicron-ship-laser'
+) as HTMLImageElement;
 const omicronHull = document.getElementById(
   'omicron-hull'
 ) as HTMLProgressElement;
@@ -139,6 +142,7 @@ const fireLasers = (ship: HTMLImageElement): void => {
 
 const omicronAttack = (): void => {
   if (isHit(omicronFleet[omicronFleet.length - 1].accuracy)) {
+    fireLasers(omicronLaser);
     playerShip.hull -= omicronFleet[omicronFleet.length - 1].firepower;
     playerHull.value = playerShip.hull;
     speak(omicronBubble, OMICRON_HIT_DIALOG);
@@ -156,10 +160,7 @@ const attack = (): void => {
       omicronFleet[omicronFleet.length - 1].hull -= playerShip.firepower;
       omicronHull.value = omicronFleet[omicronFleet.length - 1].hull;
       speak(playerBubble, CAPTAIN_HIT_DIALOG);
-      console.log(
-        'OMICRON SHIP POSITION ',
-        omicronShip.getBoundingClientRect()
-      );
+      // console.log('SHIP POSITION ', ship.getBoundingClientRect());
       // ship.classList.add('retreat');
     } else {
       speak(playerBubble, CAPTAIN_MISS_DIALOG);
