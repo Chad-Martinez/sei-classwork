@@ -78,7 +78,9 @@ const calculateScores = (
       }
     }
   });
-  learnerResults['avg'] = getAvgs(numeratorWeight, denomninatroWeight);
+  numeratorWeight.length > 0
+    ? (learnerResults['avg'] = getAvgs(numeratorWeight, denomninatroWeight))
+    : (learnerResults['avg'] = 0);
   return learnerResults;
 };
 
