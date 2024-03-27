@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="styles/modal.css" />
     <link rel="stylesheet" href="styles/arcade-button.css" />
     <link rel="stylesheet" href="styles/speech-bubble.css" />
-    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/animations.css" />
     <title>Space Battle</title>
   </head>
   <body>
     <div id="backdrop" class="visible"></div>
-    <div class="captain modal card visible" id="captain-modal">
+    <div id="captain-modal" class="captain modal card visible">
       <div class="modal__content">
         <div class="modal__title">Select your Captain</div>
         <div class="captain__container">
@@ -61,20 +61,27 @@
     <div class="main-content">
       <div class="title">SPACE BATTLE</div>
       <div id="game-area" class="opacity">
-        <div class="player col">
+        <div id="captain" class="col">
           <div class="box">
-            <img id="captain" src="images/leela.webp" alt="Leela" />
+            <img id="captain-img" src="images/leela.webp" alt="Leela" />
             <div>
-              <div id="player-bubble" class="bubble grow left">This is such a travesty</div>
+              <div id="captain-bubble" class="bubble grow left">
+                This is such a travesty
+              </div>
             </div>
           </div>
-          <div class="box">
+          <div id="captain-ship" class="box">
             <img
-              id="player-ship"
+              id="captain-ship-img"
               src="images/planet-express.webp"
               alt="Planet Express"
             />
-            <img id="captain-ship-laser" class="laser" src="images/laser-left.webp" alt="Captain Laser">
+            <img
+              id="captain-ship-laser"
+              class="laser"
+              src="images/laser-left.webp"
+              alt="Captain Laser"
+            />
           </div>
           <div class="box">
             <div class="controls">
@@ -84,9 +91,11 @@
               </div>
               <div class="progress__container">
                 <div class="progress__shell">
-                  <progress id="player-hull" max="20" value="20">100%</progress>
+                  <progress id="captain-hull" max="20" value="20">
+                    100%
+                  </progress>
                 </div>
-                <div id="player-hull-title" class="progress__title">
+                <div id="captain-hull-title" class="progress__title">
                   Planet Express Hull
                 </div>
               </div>
@@ -97,10 +106,12 @@
             </div>
           </div>
         </div>
-        <div class="omicron col">
+        <div id="omicron" class="col">
           <div class="box">
             <div>
-              <div id="omicron-bubble" class="bubble grow right">This is such a travesty.  Who is going to pay for this?</div>
+              <div id="omicron-bubble" class="bubble grow right">
+                This is such a travesty. Who is going to pay for this?
+              </div>
             </div>
             <img id="omicron-lrrrr" src="images/lrrrr.webp" alt="Lrrrr" />
           </div>
@@ -110,7 +121,12 @@
               src="images/omicron-ship.webp"
               alt="Omicron Ship"
             />
-            <img id="omicron-ship-laser" class="laser" src="images/lasers-right.webp" alt="Omicron Laser">
+            <img
+              id="omicron-ship-laser"
+              class="laser"
+              src="images/lasers-right.webp"
+              alt="Omicron Laser"
+            />
           </div>
           <div class="box">
             <div class="controls">
