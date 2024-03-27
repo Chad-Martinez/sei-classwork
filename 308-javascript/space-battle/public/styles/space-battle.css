@@ -65,6 +65,12 @@ body {
   align-self: center;
 }
 
+#captain-ship-laser {
+  position: absolute;
+  z-index: -1;
+  transform: translate(130px, 140px);
+}
+
 #player-bubble {
   opacity: 0;
 }

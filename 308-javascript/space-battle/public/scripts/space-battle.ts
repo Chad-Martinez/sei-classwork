@@ -10,8 +10,8 @@ const playerShip: Ship = {
   accuracy: 0.7,
 };
 
-let captain: string;
-let ship: string;
+let captainName: string;
+let shipName: string;
 const alienCount: number = 5;
 
 const CAPTAIN_HIT_DIALOG: string = 'Yes! Direct Hit!';
@@ -39,12 +39,18 @@ const selectNimbus = document.getElementById(
 ) as HTMLButtonElement;
 const backdrop = document.getElementById('backdrop') as HTMLDivElement;
 
-const setCaptain = document.getElementById('captain') as HTMLImageElement;
-const setShip = document.getElementById('player-ship') as HTMLImageElement;
-const shipCount = document.getElementById('ship-count') as HTMLDivElement;
+const captain = document.getElementById('captain') as HTMLImageElement;
+const ship = document.getElementById('player-ship') as HTMLImageElement;
+const shipLaser = document.getElementById(
+  'captain-ship-laser'
+) as HTMLImageElement;
+const omicronShipCount = document.getElementById(
+  'ship-count'
+) as HTMLDivElement;
 const playerHull = document.getElementById(
   'player-hull'
 ) as HTMLProgressElement;
+const omicronShip = document.getElementById('omicron-ship');
 const omicronHull = document.getElementById(
   'omicron-hull'
 ) as HTMLProgressElement;
@@ -68,8 +74,8 @@ const toggleShipModal = (): void => {
 const selectCaptainHandler = (e: InputEvent): void => {
   console.log(e);
   e.target instanceof HTMLButtonElement
-    ? (captain = e.target.id)
-    : (captain = 'leela-select');
+    ? (captainName = e.target.id)
+    : (captainName = 'leela-select');
 
   toggleCaptainModal();
   toggleShipModal();
@@ -77,17 +83,17 @@ const selectCaptainHandler = (e: InputEvent): void => {
 
 const selectShipHandler = (e: InputEvent): void => {
   e.target instanceof HTMLButtonElement
-    ? (ship = e.target.id)
-    : (ship = 'planet-express-select');
+    ? (shipName = e.target.id)
+    : (shipName = 'planet-express-select');
 
-  if (captain === 'zapp-select') {
-    setCaptain.setAttribute('src', 'images/zapp-main.webp');
-    setCaptain.setAttribute('alt', 'Zapp');
+  if (captainName === 'zapp-select') {
+    captain.setAttribute('src', 'images/zapp-main.webp');
+    captain.setAttribute('alt', 'Zapp');
   }
-  if (ship === 'nimbus-select') {
-    setShip.setAttribute('src', 'images/nimbus.webp');
-    setShip.setAttribute('alt', 'Nimbus');
-    setShip.style.height = '320px';
+  if (shipName === 'nimbus-select') {
+    ship.setAttribute('src', 'images/nimbus.webp');
+    ship.setAttribute('alt', 'Nimbus');
+    ship.style.height = '320px';
     playerHullTitle.innerText = 'Nimbus Hull';
   }
 
@@ -126,7 +132,12 @@ const speak = (element, dialog) => {
 
 const omicronFleet: Array<Ship> = alienShipFactory(alienCount);
 
-const omicronAttack = () => {
+const fireLasers = (ship: HTMLImageElement): void => {
+  ship.classList.add('fire');
+  setTimeout(() => ship.classList.remove('fire'), 600);
+};
+
+const omicronAttack = (): void => {
   if (isHit(omicronFleet[omicronFleet.length - 1].accuracy)) {
     playerShip.hull -= omicronFleet[omicronFleet.length - 1].firepower;
     playerHull.value = playerShip.hull;
@@ -136,14 +147,20 @@ const omicronAttack = () => {
   }
 };
 
-const attack = () => {
+const attack = (): void => {
   console.log(omicronFleet);
 
   if (omicronFleet.length > 0) {
     if (isHit(playerShip.accuracy)) {
+      fireLasers(shipLaser);
       omicronFleet[omicronFleet.length - 1].hull -= playerShip.firepower;
       omicronHull.value = omicronFleet[omicronFleet.length - 1].hull;
       speak(playerBubble, CAPTAIN_HIT_DIALOG);
+      console.log(
+        'OMICRON SHIP POSITION ',
+        omicronShip.getBoundingClientRect()
+      );
+      // ship.classList.add('retreat');
     } else {
       speak(playerBubble, CAPTAIN_MISS_DIALOG);
     }
@@ -152,7 +169,7 @@ const attack = () => {
     } else {
       omicronFleet.pop();
       speak(playerBubble, CAPTAIN_DESTROY_DIALOG);
-      shipCount.innerText = omicronFleet.length.toString();
+      omicronShipCount.innerText = omicronFleet.length.toString();
       setOmicronHull(omicronFleet[omicronFleet.length - 1].hull);
     }
   }
