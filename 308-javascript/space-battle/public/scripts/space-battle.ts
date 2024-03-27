@@ -26,17 +26,11 @@ const gameArea = document.getElementById('game-area') as HTMLDivElement;
 const selectCaptainModal = document.getElementById(
   'captain-modal'
 ) as HTMLDivElement;
-const selectLeela = document.getElementById(
-  'leela-select'
-) as HTMLButtonElement;
-const selectZapp = document.getElementById('zapp-select') as HTMLButtonElement;
+const selectCaptain = document.querySelector('.captain__container');
+console.log(selectCaptain);
 const selectShipModal = document.getElementById('ship-modal') as HTMLDivElement;
-const selectPlanetExpress = document.getElementById(
-  'planet-express-select'
-) as HTMLButtonElement;
-const selectNimbus = document.getElementById(
-  'nimbus-select'
-) as HTMLButtonElement;
+const selectShip = document.querySelector('.ship__container');
+console.log('SHIP ', selectShip);
 const backdrop = document.getElementById('backdrop') as HTMLDivElement;
 
 const captain = document.getElementById('captain') as HTMLDivElement;
@@ -120,8 +114,6 @@ const setOmicronHull = (hullValue) => {
   omicronHull.value = hullValue;
 };
 
-console.log(captain.children[0].lastElementChild.firstElementChild);
-
 const speak = (element: HTMLElement, dialog: string): void => {
   element.innerText = dialog;
   element.style.opacity = '1';
@@ -186,8 +178,6 @@ const attack = (): void => {
     }
   }
 };
-selectLeela.addEventListener('click', selectCaptainHandler);
-selectZapp.addEventListener('click', selectCaptainHandler);
-selectPlanetExpress.addEventListener('click', selectShipHandler);
-selectNimbus.addEventListener('click', selectShipHandler);
+selectCaptain.addEventListener('click', selectCaptainHandler);
+selectShip.addEventListener('click', selectShipHandler);
 attackBtn.addEventListener('click', attack);

@@ -50,8 +50,8 @@ body {
   height: 33%;
 }
 
-.player .box:first-child,
-.omicron .box:first-child {
+#captain .box:first-child,
+#omicron .box:first-child {
   gap: 20px;
 }
 
@@ -60,13 +60,13 @@ body {
   z-index: -1;
 }
 
-#captain,
+#captain-img,
 #omicron-lrrrr {
   height: 200px;
   object-fit: contain;
 }
 
-#player-ship {
+#captain-ship-img {
   height: 150px;
   object-fit: contain;
   align-self: center;
@@ -76,7 +76,7 @@ body {
   transform: translate(130px, 140px) rotateZ(3deg);
 }
 
-#player-bubble {
+#captain-bubble {
   opacity: 0;
 }
 
@@ -84,7 +84,7 @@ body {
   opacity: 0;
 }
 
-.omicron .box:first-child div:first-child {
+#omicron .box:first-child div:first-child {
   margin-left: auto;
 }
 
