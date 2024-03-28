@@ -23,8 +23,12 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 95vw;
-  height: 95vh;
+  /* width: 95vw;
+  height: 95vh; */
+  min-width: 1455px;
+  max-width: 1543px;
+  min-height: 985px;
+  max-height: 1223px;
   padding: 20px;
 }
 
