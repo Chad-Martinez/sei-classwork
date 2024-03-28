@@ -59,6 +59,14 @@ label {
   animation: fade-slide-in 0.3s ease-out forwards;
 }
 
+.game-finish {
+  display: none;
+}
+
+.game-finish.visible {
+  display: block;
+}
+
 .modal .modal__title {
   margin: 0;
   padding-bottom: 1rem;
@@ -150,8 +158,22 @@ label {
   width: 160px;
 }
 
+.game-finish__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 1.4rem;
+  gap: 40px;
+}
+
 .game-finish__content img {
   width: 800px;
+}
+
+.game-finish__slogan {
+  width: 60%;
+  text-align: center;
 }
 
 @keyframes fade-slide-in {
