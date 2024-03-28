@@ -195,4 +195,8 @@ label {
     width: 65.7rem;
     left: calc(50% - 32.5rem);
   }
+  #game-finish-modal {
+    width: 65.7rem;
+    left: calc(50% - 32.5rem);
+  }
 }
