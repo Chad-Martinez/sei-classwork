@@ -21,26 +21,9 @@ const GAME_WON_TITLE = 'Congratulations Captain';
 const GAME_WON_SLOGAN =
   "Call me cocky, but if there's an alien out there I can't kill, I haven't met him and killed him yet.";
 const GAME_LOST_TITLE = 'DOOOOOOOOMMMMMM!!!';
-const GAME_RETREAT_TITLE = 'COWARDS!!';
+const GAME_RETREAT_TITLE = 'COWARD!!!';
 const GAME_RETREAT_SLOGAN =
   'My instincts are to hide in the barrel like the wiley fish.';
-
-const ZAPP_QUOTE_1 = "When I'm In Command, Every Mission Is A Suicide Mission.";
-const ZAPP_QUOTE_2 =
-  'The Spirit Is Willing, But The Flesh Is Spongy And Bruised.';
-('Fire all weapons and open a hailing frequency for my victory yodel.');
-('Has my reputation preceded me or was I too quick for it?');
-("Call me cocky, but if there's an alien out there I can't kill, I haven't met him and killed him yet.");
-("Don't blame yourself, Kif. We were doomed from the start. Nothing remains now but for the captain to go down with his ship.");
-('My instincts are to hide in the barrel like the wiley fish.');
-('The alien mothership is in orbit here. If we can hit that bullseye, the rest of the dominoes will fall like a house of cards. Checkmate. ');
-(' I surrender and volunteer for treason.');
-("She's built like a steakhouse but she handles like a bistro.");
-('Stop exploding you cowards!!');
-('We Know Nothing About Them, Their Language, Their History, Or What They Look Like. But We Can Assume This. They Stand For Everything We Don’t Stand For. Also, They Told Me You Guys Look like cowards');
-
-// LEELA
-("Look, I don't know about your previous captains, but I intend to do as little dying as possible");
 
 const OMICRON_HIT_DIALOG: string = 'Hit!! Soon you will meet your fate!';
 const OMICRON_MISS_DIALOG: string = 'Miss? Unacceptable! Recalibrate lasers!';
@@ -157,10 +140,10 @@ const speak = (element: HTMLElement, dialog: string): void => {
 
 const omicronFleet: Array<Ship> = alienShipFactory(alienCount);
 
-const fireLasers = (player: HTMLDivElement): void => {
+const fireLasers = (player: HTMLDivElement, hit: string): void => {
   const ship = player.children[1].lastElementChild as HTMLImageElement;
-  ship.classList.add('fire');
-  setTimeout(() => ship.classList.remove('fire'), 600);
+  ship.classList.add(`${hit}`);
+  setTimeout(() => ship.classList.remove(`${hit}`), 600);
 };
 
 const gameFinish = (action: string): void => {
@@ -199,7 +182,7 @@ const subtractDamage = (
 
 const omicronAttack = (): void => {
   if (isHit(omicronFleet[omicronFleet.length - 1].accuracy)) {
-    fireLasers(omicron);
+    fireLasers(omicron, 'hit');
     const enemyHull: number = subtractDamage(
       omicronFleet[omicronFleet.length - 1],
       captainShip,
@@ -209,6 +192,7 @@ const omicronAttack = (): void => {
       ? gameFinish('lose')
       : speak(omicronBubble, OMICRON_HIT_DIALOG);
   } else {
+    fireLasers(omicron, 'miss');
     speak(omicronBubble, OMICRON_MISS_DIALOG);
   }
 };
@@ -216,7 +200,7 @@ const omicronAttack = (): void => {
 const attack = (): void => {
   if (omicronFleet.length > 0) {
     if (isHit(captainShip.accuracy)) {
-      fireLasers(captain);
+      fireLasers(captain, 'hit');
       subtractDamage(
         captainShip,
         omicronFleet[omicronFleet.length - 1],
@@ -226,6 +210,7 @@ const attack = (): void => {
       // console.log('SHIP POSITION ', ship.getBoundingClientRect());
       // ship.classList.add('retreat');
     } else {
+      fireLasers(captain, 'miss');
       speak(captainBubble, CAPTAIN_MISS_DIALOG);
     }
     if (omicronFleet[omicronFleet.length - 1].hull > 0) {

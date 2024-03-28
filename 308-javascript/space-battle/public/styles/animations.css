@@ -1,7 +1,3 @@
-/* :root {
-    --captain laster
-} */
-
 #captain-ship-img.retreat {
   /* position: fixed; */
   transform: translate(-30px, 300px);
@@ -18,11 +14,11 @@
   }
 }
 
-#captain-ship-laser.fire {
-  animation: captain-fire 0.5s backwards;
+#captain-ship-laser.hit {
+  animation: captain-hit 0.5s backwards;
 }
 
-@keyframes captain-fire {
+@keyframes captain-hit {
   from {
   }
   to {
@@ -30,14 +26,38 @@
   }
 }
 
-#omicron-ship-laser.fire {
-  animation: omicron-fire 0.5s backwards;
+#captain-ship-laser.miss {
+  animation: captain-miss 0.5s backwards;
 }
 
-@keyframes omicron-fire {
+@keyframes captain-miss {
+  from {
+  }
+  to {
+    transform: translate(1123px, 350px);
+  }
+}
+
+#omicron-ship-laser.hit {
+  animation: omicron-hit 0.5s backwards;
+}
+
+@keyframes omicron-hit {
   from {
   }
   to {
     transform: translate(-560px, 140px);
+  }
+}
+
+#omicron-ship-laser.miss {
+  animation: omicron-miss 0.5s backwards;
+}
+
+@keyframes omicron-miss {
+  from {
+  }
+  to {
+    transform: translate(-560px, -125px);
   }
 }
