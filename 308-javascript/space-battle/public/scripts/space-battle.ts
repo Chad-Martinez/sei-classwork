@@ -17,27 +17,30 @@ const alienCount: number = 5;
 const CAPTAIN_HIT_DIALOG: string = 'Yes! Direct Hit!';
 const CAPTAIN_MISS_DIALOG: string = 'Rats! We missed!';
 const CAPTAIN_DESTROY_DIALOG: string = 'Another one bites the dust!';
+const GAME_WON_TITLE = 'Congratulations Captain';
+const GAME_WON_SLOGAN =
+  "Call me cocky, but if there's an alien out there I can't kill, I haven't met him and killed him yet.";
+const GAME_LOST_TITLE = 'DOOOOOOOOMMMMMM!!!';
+const GAME_RETREAT_TITLE = 'COWARD!';
+const GAME_RETREAT_SLOGAN =
+  'My instincts are to hide in the barrel like the wiley fish.';
 
 const OMICRON_HIT_DIALOG: string = 'Hit!! Soon you will meet your fate!';
 const OMICRON_MISS_DIALOG: string = 'Miss? Unacceptable! Recalibrate lasers!';
 const OMICRON_DESTROY_DIALOG: string = 'MUAH AHAH AH! Doooom!';
 
+const backdrop = document.getElementById('backdrop') as HTMLDivElement;
 const gameArea = document.getElementById('game-area') as HTMLDivElement;
 const selectCaptainModal = document.getElementById(
   'captain-modal'
 ) as HTMLDivElement;
-const selectLeela = document.getElementById(
-  'leela-select'
-) as HTMLButtonElement;
-const selectZapp = document.getElementById('zapp-select') as HTMLButtonElement;
 const selectShipModal = document.getElementById('ship-modal') as HTMLDivElement;
-const selectPlanetExpress = document.getElementById(
-  'planet-express-select'
-) as HTMLButtonElement;
-const selectNimbus = document.getElementById(
-  'nimbus-select'
-) as HTMLButtonElement;
-const backdrop = document.getElementById('backdrop') as HTMLDivElement;
+const gameFinishModal = document.getElementById(
+  'game-finish-modal'
+) as HTMLDivElement;
+
+const selectCaptain = document.querySelector('.captain__container');
+const selectShip = document.querySelector('.ship__container');
 
 const captain = document.getElementById('captain') as HTMLDivElement;
 const omicronShipCount = document.getElementById(
@@ -53,19 +56,22 @@ const omicronHull = document.getElementById(
 ) as HTMLProgressElement;
 const captainHullTitle: HTMLElement =
   document.getElementById('captain-hull-title');
+
 const captainBubble: HTMLElement = document.getElementById('captain-bubble');
 const omicronBubble: HTMLElement = document.getElementById('omicron-bubble');
 
-const attackBtn: HTMLElement = document.getElementById('attack-btn');
+const attackBtn = document.getElementById('attack-btn') as HTMLButtonElement;
+const retreatBtn = document.getElementById('retreat-btn') as HTMLButtonElement;
 
-const toggleBackdrop = (): void => backdrop.classList.remove('visible');
+const toggleBackdrop = (): void => {
+  backdrop.classList.toggle('visible');
+};
 
 const toggleCaptainModal = (): void =>
   selectCaptainModal.classList.remove('visible');
 
 const toggleShipModal = (): void => {
   selectShipModal.classList.add('visible');
-  toggleBackdrop();
 };
 
 const selectCaptainHandler = (e: InputEvent): void => {
@@ -89,13 +95,17 @@ const selectShipHandler = (e: InputEvent): void => {
     captainImg.setAttribute('alt', 'Zapp');
   }
   if (shipName === 'nimbus-select') {
-    const ship = captain.children[1].firstElementChild as HTMLImageElement;
-    ship.setAttribute('src', 'images/nimbus.webp');
-    ship.setAttribute('alt', 'Nimbus');
-    ship.style.height = '320px';
-    captainHullTitle.innerText = 'Nimbus Hull';
+    const shipImg = captain.children[1].firstElementChild as HTMLImageElement;
+    shipImg.setAttribute('src', 'images/nimbus.webp');
+    shipImg.setAttribute('alt', 'Nimbus');
+    shipImg.style.height = '320px';
+    captainHullTitle.textContent = 'Nimbus Hull';
+    captainShip.hull = 30;
+    captainShip.firepower = 6;
+    captainShip.accuracy = 0.5;
   }
-  selectShipModal.classList.remove('visible');
+  selectShipModal.classList.toggle('visible');
+  toggleBackdrop();
   gameArea.classList.remove('opacity');
   setOmicronHull(omicronFleet[omicronFleet.length - 1].hull);
 };
@@ -120,10 +130,8 @@ const setOmicronHull = (hullValue) => {
   omicronHull.value = hullValue;
 };
 
-console.log(captain.children[0].lastElementChild.firstElementChild);
-
 const speak = (element: HTMLElement, dialog: string): void => {
-  element.innerText = dialog;
+  element.textContent = dialog;
   element.style.opacity = '1';
   setTimeout(() => {
     element.style.opacity = '0';
@@ -132,31 +140,59 @@ const speak = (element: HTMLElement, dialog: string): void => {
 
 const omicronFleet: Array<Ship> = alienShipFactory(alienCount);
 
-const fireLasers = (player: HTMLDivElement): void => {
+const fireLasers = (player: HTMLDivElement, hit: string): void => {
   const ship = player.children[1].lastElementChild as HTMLImageElement;
-  ship.classList.add('fire');
-  setTimeout(() => ship.classList.remove('fire'), 600);
+  ship.classList.add(`${hit}`);
+  setTimeout(() => ship.classList.remove(`${hit}`), 600);
+};
+
+const gameFinish = (action: string): void => {
+  const content = gameFinishModal.firstElementChild as HTMLDivElement;
+  const title = content.firstElementChild as HTMLDivElement;
+  const gameFinishImage = content.children[1] as HTMLImageElement;
+  const slogan = content.children[2] as HTMLDivElement;
+  if (action == 'retreat') {
+    title.textContent = GAME_RETREAT_TITLE;
+    gameFinishImage.setAttribute('src', 'images/zapp-fish-full.webp');
+    gameFinishImage.setAttribute('alt', 'The Wiley Fish');
+    slogan.textContent = GAME_RETREAT_SLOGAN;
+    gameFinishModal.classList.toggle('visible');
+  } else if (action == 'lose') {
+    title.textContent = GAME_LOST_TITLE;
+    gameFinishImage.setAttribute('src', 'images/lrrr-doom.webp');
+    gameFinishImage.setAttribute('alt', 'Doooom!');
+    gameFinishImage.style.width = '300px';
+    slogan.textContent = '';
+    gameFinishModal.classList.toggle('visible');
+  } else {
+    gameFinishModal.classList.toggle('visible');
+  }
+  toggleBackdrop();
 };
 
 const subtractDamage = (
   offense: Ship,
   defense: Ship,
   defenseHull: HTMLProgressElement
-) => {
+): number => {
   defense.hull -= offense.firepower;
   defenseHull.value = defense.hull;
+  return defense.hull;
 };
 
 const omicronAttack = (): void => {
   if (isHit(omicronFleet[omicronFleet.length - 1].accuracy)) {
-    fireLasers(omicron);
-    subtractDamage(
+    fireLasers(omicron, 'hit');
+    const enemyHull: number = subtractDamage(
       omicronFleet[omicronFleet.length - 1],
       captainShip,
       captainHull
     );
-    speak(omicronBubble, OMICRON_HIT_DIALOG);
+    enemyHull <= 0
+      ? gameFinish('lose')
+      : speak(omicronBubble, OMICRON_HIT_DIALOG);
   } else {
+    fireLasers(omicron, 'miss');
     speak(omicronBubble, OMICRON_MISS_DIALOG);
   }
 };
@@ -164,7 +200,7 @@ const omicronAttack = (): void => {
 const attack = (): void => {
   if (omicronFleet.length > 0) {
     if (isHit(captainShip.accuracy)) {
-      fireLasers(captain);
+      fireLasers(captain, 'hit');
       subtractDamage(
         captainShip,
         omicronFleet[omicronFleet.length - 1],
@@ -174,20 +210,41 @@ const attack = (): void => {
       // console.log('SHIP POSITION ', ship.getBoundingClientRect());
       // ship.classList.add('retreat');
     } else {
+      fireLasers(captain, 'miss');
       speak(captainBubble, CAPTAIN_MISS_DIALOG);
     }
     if (omicronFleet[omicronFleet.length - 1].hull > 0) {
       setTimeout(omicronAttack, 500);
     } else {
       omicronFleet.pop();
-      speak(captainBubble, CAPTAIN_DESTROY_DIALOG);
-      omicronShipCount.innerText = omicronFleet.length.toString();
-      setOmicronHull(omicronFleet[omicronFleet.length - 1].hull);
+      if (omicronFleet.length <= 0) {
+        gameFinish('win');
+      } else {
+        speak(captainBubble, CAPTAIN_DESTROY_DIALOG);
+        retreatBtn.classList.remove('push--disabled');
+        retreatBtn.classList.add('push--flat');
+        omicronShipCount.textContent = omicronFleet.length.toString();
+        setOmicronHull(omicronFleet[omicronFleet.length - 1].hull);
+      }
     }
   }
 };
-selectLeela.addEventListener('click', selectCaptainHandler);
-selectZapp.addEventListener('click', selectCaptainHandler);
-selectPlanetExpress.addEventListener('click', selectShipHandler);
-selectNimbus.addEventListener('click', selectShipHandler);
+
+const retreatHandler = (e) => {
+  const ship = captain.children[1].firstElementChild as HTMLImageElement;
+  ship.classList.toggle('retreat');
+  setTimeout(() => {
+    ship.classList.toggle('retreat');
+    gameFinish('retreat');
+  }, 1500);
+};
+
+const reset = (e: InputEvent) => {
+  if (e.target instanceof HTMLButtonElement) location.reload();
+};
+
+selectCaptain.addEventListener('click', selectCaptainHandler);
+selectShip.addEventListener('click', selectShipHandler);
 attackBtn.addEventListener('click', attack);
+retreatBtn.addEventListener('click', retreatHandler);
+gameFinishModal.addEventListener('click', reset);

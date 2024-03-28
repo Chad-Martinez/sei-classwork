@@ -1,43 +1,67 @@
-/* :root {
-    --captain laster
-} */
-
 #captain-ship-img.retreat {
-  /* position: fixed; */
-  transform: translate(-30px, 300px);
-  /* height: 0px; */
-  animation: blast-off 1s cubic-bezier(1, 0.06, 1, 0.9) forwards;
+  animation: retreat 1s cubic-bezier(1, 0.06, 1, 0.9) forwards;
 }
 
-@keyframes blast-off {
-  from {
-    transform: translate(-350px, 400px);
-  }
-  to {
-    transform: translate(800px, -1300px);
-  }
-}
-
-#captain-ship-laser.fire {
-  animation: captain-fire 0.5s backwards;
-}
-
-@keyframes captain-fire {
+@keyframes retreat {
   from {
   }
   to {
-    transform: translate(1123px, 140px);
+    transform: translate(2000px, -600px);
   }
 }
 
-#omicron-ship-laser.fire {
-  animation: omicron-fire 0.5s backwards;
+#captain-ship-laser.hit {
+  animation: captain-hit 0.5s backwards;
 }
 
-@keyframes omicron-fire {
+@keyframes captain-hit {
   from {
+    opacity: 1;
   }
   to {
-    transform: translate(-560px, 140px);
+    opacity: 1;
+    transform: translate(1180px, 160px);
+  }
+}
+
+#captain-ship-laser.miss {
+  animation: captain-miss 0.5s backwards;
+}
+
+@keyframes captain-miss {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate(1123px, 350px);
+  }
+}
+
+#omicron-ship-laser.hit {
+  animation: omicron-hit 0.5s ease-in-out backwards;
+}
+
+@keyframes omicron-hit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate(-585px, 148px)
+  }
+}
+
+#omicron-ship-laser.miss {
+  animation: omicron-miss 0.5s backwards;
+}
+
+@keyframes omicron-miss {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate(-560px, -125px);
   }
 }

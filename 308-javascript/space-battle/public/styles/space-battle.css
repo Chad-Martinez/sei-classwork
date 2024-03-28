@@ -23,8 +23,12 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 95vw;
-  height: 95vh;
+  /* width: 95vw;
+  height: 95vh; */
+  min-width: 1455px;
+  max-width: 1543px;
+  min-height: 985px;
+  max-height: 1223px;
   padding: 20px;
 }
 
@@ -50,33 +54,34 @@ body {
   height: 33%;
 }
 
-.player .box:first-child,
-.omicron .box:first-child {
+#captain .box:first-child,
+#omicron .box:first-child {
   gap: 20px;
 }
 
 .laser {
   position: absolute;
+  opacity: 0;
   z-index: -1;
 }
 
-#captain,
+#captain-img,
 #omicron-lrrrr {
   height: 200px;
   object-fit: contain;
 }
 
-#player-ship {
+#captain-ship-img {
   height: 150px;
   object-fit: contain;
   align-self: center;
 }
 
 #captain-ship-laser {
-  transform: translate(130px, 140px) rotateZ(3deg);
+  transform: translate(130px, 146px) rotateZ(3deg);
 }
 
-#player-bubble {
+#captain-bubble {
   opacity: 0;
 }
 
@@ -84,7 +89,7 @@ body {
   opacity: 0;
 }
 
-.omicron .box:first-child div:first-child {
+#omicron .box:first-child div:first-child {
   margin-left: auto;
 }
 

@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div class="ship modal card" id="ship-modal">
+    <div id="ship-modal" class="ship modal card">
       <div class="modal__content">
         <div class="modal__title">Select your vessel</div>
         <div class="ship__container">
@@ -49,15 +49,19 @@
         </div>
       </div>
     </div>
-    <!-- <div class="game-finish modal card" id="game-finish-modal">
-      <div class="modal__content">
-        <div id="game-finish-title" class="modal__title">You won!</div>
-        <div class="game-finish__content">
-          <img id="winner-img" src="images/winner.webp" alt="Winner" />
-          <button id="nimbus-select" class="btn btn--success">Nimbus</button>
+    <div id="game-finish-modal" class="game-finish modal card">
+      <div class="game-finish__content modal__content">
+        <div id="game-finish-title" class="modal__title">
+          Congratulations Captain
         </div>
+        <img id="game-finish-img" src="images/zapp-salute.webp" alt="Winner" />
+        <div class="game-finish__slogan">
+          "Call me cocky, but if there's an alien out there I can't kill, I
+          haven't met him and killed him yet."
+        </div>
+        <button id="nimbus-select" class="btn btn--success">START</button>
       </div>
-    </div> -->
+    </div>
     <div class="main-content">
       <div class="title">SPACE BATTLE</div>
       <div id="game-area" class="opacity">
@@ -100,7 +104,7 @@
                 </div>
               </div>
               <div class="button__container">
-                <button id="retreat" class="push--flat"></button>
+                <button id="retreat-btn" class="push--disabled"></button>
                 <div class="button-action">Retreat</div>
               </div>
             </div>
