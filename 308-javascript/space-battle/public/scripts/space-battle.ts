@@ -117,6 +117,9 @@ const selectShipHandler = (e: InputEvent): void => {
     shipImg.setAttribute('alt', 'Nimbus');
     shipImg.style.height = '320px';
     captainHullTitle.textContent = 'Nimbus Hull';
+    captainShip.hull = 30;
+    captainShip.firepower = 6;
+    captainShip.accuracy = 0.5;
   }
   selectShipModal.classList.toggle('visible');
   toggleBackdrop();
