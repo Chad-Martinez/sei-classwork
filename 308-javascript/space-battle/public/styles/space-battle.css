@@ -61,6 +61,7 @@ body {
 
 .laser {
   position: absolute;
+  opacity: 0;
   z-index: -1;
 }
 
@@ -77,7 +78,7 @@ body {
 }
 
 #captain-ship-laser {
-  transform: translate(130px, 140px) rotateZ(3deg);
+  transform: translate(130px, 146px) rotateZ(3deg);
 }
 
 #captain-bubble {

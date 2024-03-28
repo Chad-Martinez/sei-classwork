@@ -21,7 +21,7 @@ const GAME_WON_TITLE = 'Congratulations Captain';
 const GAME_WON_SLOGAN =
   "Call me cocky, but if there's an alien out there I can't kill, I haven't met him and killed him yet.";
 const GAME_LOST_TITLE = 'DOOOOOOOOMMMMMM!!!';
-const GAME_RETREAT_TITLE = 'COWARD!!!';
+const GAME_RETREAT_TITLE = 'COWARD!';
 const GAME_RETREAT_SLOGAN =
   'My instincts are to hide in the barrel like the wiley fish.';
 
@@ -231,7 +231,12 @@ const attack = (): void => {
 };
 
 const retreatHandler = (e) => {
-  gameFinish('retreat');
+  const ship = captain.children[1].firstElementChild as HTMLImageElement;
+  ship.classList.toggle('retreat');
+  setTimeout(() => {
+    ship.classList.toggle('retreat');
+    gameFinish('retreat');
+  }, 1500);
 };
 
 const reset = (e: InputEvent) => {
